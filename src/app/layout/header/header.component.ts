@@ -9,9 +9,12 @@ export class HeaderComponent implements OnInit {
 
   title = 'CBGB';
   _open = false;
+  token = null;
   constructor(public el: ElementRef) { }
 
   ngOnInit() {
+    this.token = localStorage.getItem('token');
+    console.log(this.token);
   }
 
   openSidebar() {

@@ -23,6 +23,8 @@ import { LoginComponent } from './layout/login/login.component';
 import { ProductsComponent } from './layout/products/products.component';
 import { RegisterComponent } from './layout/register/register.component';
 import { ForgotPasswdComponent } from './layout/forgot-passwd/forgot-passwd.component';
+import { AccountComponent } from './layout/account/account.component';
+import { AccountOrderComponent } from './layout/account/account-order/account-order.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ForgotPasswdComponent } from './layout/forgot-passwd/forgot-passwd.comp
     LoginComponent,
     ProductsComponent,
     RegisterComponent,
-    ForgotPasswdComponent
+    ForgotPasswdComponent,
+    AccountComponent,
+    AccountOrderComponent
   ],
   imports: [
     BrowserModule,

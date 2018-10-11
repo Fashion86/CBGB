@@ -1,13 +1,58 @@
 <app-header></app-header>
-    <mat-drawer #drawer class="example-sidenav" mode="over">
-        <p>Auto-resizing sidenav</p>
-        <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-        <button (click)="showFiller = !showFiller" mat-raised-button>
-            Toggle extra text
-        </button>
-    </mat-drawer>
-
-        <button type="button" mat-button (click)="drawer.toggle()">
-            Toggle sidenav
-        </button>
+<div id="cart" class="content">
+    <h1 class="title"><div class="inner-wrapper">Confirmación de compra</div></h1>
+    <div class="inner-wrapper sm">
+        <div id="cart-user">
+            <h2><i class="fa fa-user"></i> Datos de usuario</h2>
+            <div><span>Nombre: </span> Lorem Ipsum</div>
+            <div><span>E-mail: </span> lorem@ipsum.com</div>
+            <div><span>Teléfono: </span> 12345678</div>
+        </div>
+        <div id="cart-detail">
+            <table>
+                <tr>
+                    <th data-breakpoints="xs"></th>
+                    <th>Producto</th>
+                    <th data-breakpoints="xs">Cantidad</th>
+                    <th >Precio</th>
+                </tr>
+                <tr>
+                    <td><img src="assets/img/prod-list-item.png" alt=""></td>
+                    <td>Esmeralda Malbec</td>
+                    <td>
+                        <input type="number" min="1" step="1" value="1">
+                    </td>
+                    <td>$102,96</td>
+                </tr>
+                <tr>
+                    <td><img src="assets/img/prod-list-item.png" alt=""></td>
+                    <td>Esmeralda Malbec</td>
+                    <td>
+                        <input type="number" min="1" step="1" value="1">
+                    </td>
+                    <td>$102,96</td>
+                </tr>
+                <tr>
+                    <td><img src="assets/img/prod-list-item.png" alt=""></td>
+                    <td>Esmeralda Malbec</td>
+                    <td>
+                        <input type="number" min="1" step="1" value="1">
+                    </td>
+                    <td>$102,96</td>
+                </tr>
+                <tr id="cart-total">
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td>$102,96</td>
+                </tr>
+            </table>
+            <div id="cart-options">
+                <a href="#" class="float-left btn-cbgb white"><i class="fa fa-angle-left"></i> Volver a Tienda</a>
+                <a href="#" class="float-right btn-cbgb blue"><i class="fa fa-check"></i> Confirmar pedido</a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <app-footer></app-footer>

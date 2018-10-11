@@ -7,12 +7,12 @@ import { map } from 'rxjs/operators';
 })
 export class UserService {
 
-  baseUrl = 'http://app.gioping.com/worker/api/v1';
+  baseUrl = 'http://app.gioping.com/api/v1';
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private _http: HttpClient) { }
 
-  addUser(data) {console.log(data)
-    return this._http.post(this.baseUrl + '/signup', data, {headers: this.headers})
+  addUser(data) {
+    return this._http.post(this.baseUrl + '/signup/', data, {headers: this.headers})
       .pipe(
         map((response: Response) => response)
       );

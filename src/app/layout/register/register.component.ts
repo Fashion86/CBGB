@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   confirmpasswd: string;
   checkpasswd = true;
   form: FormGroup;
-  errormsg = '';
+  errormsg: string;
   private formSubmitAttempt: boolean;
   constructor(private formBuilder: FormBuilder,
               private  userapi: UserService,
@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
     this.newuser = new User();
     this.formSubmitAttempt = false;
     this.confirmpasswd = '';
+    this.errormsg = null;
   }
   onSubmit() {
     this.formSubmitAttempt = true;
@@ -43,13 +44,16 @@ export class RegisterComponent implements OnInit {
       this.checkpasswd = false;
       return;
     }
-    this.userapi.addUser(this.newuser).subscribe(data => {
-      this.router.navigate(['/login']);
-      // this.error = false;
-    }, err => {
-      // this.error = true;
-      this.errormsg = 'Register Failed!';
-    });
+    if (this.form.valid) {
+      this.userapi.addUser(this.newuser).subscribe(data => {
+        localStorage.setItem('token', JSON.stringify(data['token']));
+        this.router.navigate(['/login']);
+        // this.error = false;
+      }, err => {
+        // this.error = true;
+        this.errormsg = 'Register Failed!';
+      });
+    }
   }
   isFieldValid(field: string) {
     return (!this.form.get(field).valid && this.form.get(field).touched) ||
