@@ -23,7 +23,7 @@
           </mat-error>
         </label>
         <label class="reactform">
-          <input placeholder="Email" type="email" [(ngModel)]="newuser.email" formControlName="email">
+          <input placeholder="Email" type="email" [(ngModel)]="newuser.email" pattern="[^@]+@[^@]+" formControlName="email">
           <mat-error *ngIf="isFieldValid('email')">
             Email is required!
           </mat-error>
