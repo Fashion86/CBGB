@@ -1,3 +1,21 @@
-<p>
-  login works!
-</p>
+<app-header></app-header>
+<div id="login" class="content">
+  <h1 class="title"><div class="inner-wrapper">Ingreso</div></h1>
+  <div class="inner-wrapper xs">
+    <form>
+      <div class="login-field">
+        <input type="text" placeholder="User Name">
+      </div>
+    <div class="login-field">
+        <input type="text" placeholder="Password">
+    </div>
+    <div>
+        <a routerLink="/register" style="margin-right: 15px">Registro</a>
+        <a routerLink="/forgot-passwd"><i class="fa fa-key"></i>   Recuperar contraseña</a>
+        <input type="submit" class="btn-cbgb blue float-right" value="Enviar">
+    </div>
+    <div class="clearfix"></div>
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>

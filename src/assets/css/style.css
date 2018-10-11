@@ -40,13 +40,6 @@ ul {
     margin: 0;
 }
 
- ::-webkit-input-|holder {
-    /* Chrome/Opera/Safari */
-    opacity: 1;
-    -webkit-transition: opacity .3s;
-    -o-transition: opacity .3s;
-    transition: opacity .3s;
-}
 
  ::-moz-placeholder {
     /* Firefox 19+ */
@@ -169,7 +162,7 @@ h1.title {
     -webkit-transition: background .3s, color .3s;
     -o-transition: background .3s, color .3s;
     transition: background .3s, color .3s;
-    border-radius: none;
+    /*border-radius: none;*/
     border: none;
     display: inline-block;
     padding: 0 5px;
@@ -376,7 +369,7 @@ h1.title {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
+    /*opacity: 0;*/
     pointer-events: none;
     -webkit-transition: opacity .3s;
     -o-transition: opacity .3s;
@@ -395,6 +388,7 @@ h1.title {
 
 #nav ul {
     text-align: center;
+    color: #0b0c10;
     font: normal normal 22px 'montserratmedium';
 }
 
@@ -473,13 +467,6 @@ h1.title {
     color: #202a5f;
 }
 
-#news ::-webkit-input-|holder {
-    /* Chrome/Opera/Safari */
-    opacity: 1;
-    -webkit-transition: opacity .3s;
-    -o-transition: opacity .3s;
-    transition: opacity .3s;
-}
 
 #footer-bottom {
     background: #0b0c10;
@@ -933,7 +920,7 @@ h1.title {
     font: normal normal 16px/1.2 'montserratregular';
     margin-left: -60px;
     min-width: 405px;
-    z-index: 1;
+    /*z-index: 1;*/
 }
 
 #home-contact-info strong {
@@ -1409,7 +1396,7 @@ h1.title {
 }
 #login form input:not([type="submit"]){
     width: 100%;
-    height: 30px;
+    /*height: 38px;*/
     border-style: solid;
     border-color: #ccc;
     border-width: 0 0 1px;

@@ -1,5 +1,21 @@
-<mat-toolbar color="accent">
 
+<nav class="navbar fixed-top" style="background-color: rgb(255,255,255)">
   <img src="assets/img/logo.png" class="logo" alt="{{title}}" />
+  <a *ngIf="!_open" (click)="openSidebar()"><i class="fa fa-bars fa-2x" style="color: #333;"></i></a>
+  <a *ngIf="_open" (click)="closeSidebar()"><i class="fa fa-close fa-2x" style="color: #333;"></i></a>
+</nav>
+<div id="mySidenav" class="sidenav" style="float: right">
+  <!--<a href="javascript:void(0)" class="closebtn" (onclick)="closeSidebar()">&times;</a>-->
+    <ul>
+      <li><a routerLink="/login"><i class="fa fa-user"></i> Iniciar sesión</a></li>
+      <li><a href="#"><i class="fa fa-user"></i> Mi cuenta</a></li>
+      <li><a href="#"><i class="fa fa-shopping-cart"></i> Mi pedido</a></li>
+      <li><a href="#">La Distribuidora</a></li>
+      <li><a href="#">Nuestros Productos</a></li>
+      <li><a href="#">Destacados</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+</div>
 
-</mat-toolbar>
+
+

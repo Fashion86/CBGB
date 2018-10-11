@@ -1,14 +1,5 @@
-<div id="nav">
-  <ul>
-    <!--<li><a href="account-info.html"><i class="fas fa-user"></i> Mi cuenta</a></li>-->
-    <!--<li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Mi pedido</a></li>-->
-    <li><a href="#">La Distribuidora</a></li>
-    <li><a href="#">Nuestros Productos</a></li>
-    <li><a href="#">Destacados</a></li>
-    <li><a href="#">Contacto</a></li>
-  </ul>
-</div>
-<div id="home">
+<app-header></app-header>
+<div class="content">
   <div id="home-slider">
       <slideshow [imageUrls]="imageUrlArray"
                  [minHeight]="'600px'"
@@ -165,3 +156,4 @@
     <!--</div>-->
   </div>
 </div>
+<app-footer></app-footer>
