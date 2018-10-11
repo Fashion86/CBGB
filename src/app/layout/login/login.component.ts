@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +11,13 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
+  errormsg: string;
   username = '';
   password = '';
   private formSubmitAttempt: boolean;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private  userapi: UserService,
+              private router: Router) {
     this.form = this.formBuilder.group({
       username: [null, [Validators.required]],
       password: [null, [Validators.required]]
@@ -22,13 +27,22 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.username = '';
     this.password = '';
+    this.errormsg = null;
     this.formSubmitAttempt = false;
   }
 
   onSubmit() {
     this.formSubmitAttempt = true;
-    if (this.password != null || this.username !== null) {
-      return;
+    if (this.form.valid) {
+      const userdata = {username: this.username, password: this.password};
+      this.userapi.login(userdata).subscribe(data => {
+        localStorage.setItem('token', JSON.stringify(data['token']));
+        this.router.navigate(['/home']);
+        // this.error = false;
+      }, err => {
+        // this.error = true;
+        this.errormsg = 'Login Failed!';
+      });
     }
 
   }

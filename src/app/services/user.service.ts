@@ -17,8 +17,20 @@ export class UserService {
         map((response: Response) => response)
       );
   }
-  getUser(data) {
-    return this._http.post(this.baseUrl + '/getuser', data, {headers: this.headers})
+  login(data) {
+    return this._http.post(this.baseUrl + '/login/', data, this.jwt())
+      .pipe(
+        map((response: Response) => response)
+      );
+  }
+  getUser() {
+    return this._http.get(this.baseUrl + '/usuario/', this.jwt())
+      .pipe(
+        map((response: Response) => response)
+      );
+  }
+  updateUser(data) {
+    return this._http.patch(this.baseUrl + '/usuario/', data, this.jwt())
       .pipe(
         map((response: Response) => response)
       );
@@ -59,5 +71,14 @@ export class UserService {
       .pipe(
         map((response: Response) => response)
       );
+  }
+  private jwt() {
+    // create authorization header with jwt token
+    const token = JSON.parse(localStorage.getItem('token'));
+    if (token) {
+     const header =  new HttpHeaders().set('Authorization', 'JWT ' + token);
+     return {headers: header};
+    }
+
   }
 }

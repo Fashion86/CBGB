@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit() {
     this.formSubmitAttempt = true;
-    if (this.newuser.password != null && this.newuser.password !== this.confirmpasswd) {
+    if (this.newuser.password !== this.confirmpasswd) {
       this.checkpasswd = false;
       return;
     }

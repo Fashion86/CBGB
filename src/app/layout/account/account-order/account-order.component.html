@@ -1,3 +1,87 @@
-<p>
-  account-order works!
-</p>
+<app-header></app-header>
+<div id="account" class="content">
+  <h1 class="title"><div class="inner-wrapper">Mi cuenta</div></h1>
+  <div class="inner-wrapper sm">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+        <div id="account-menu">
+          <ul>
+            <li><a routerLink="/account">Mis datos</a></li>
+            <li class="active"><a >Mi historial de compras</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+        <div id="account-orders">
+          <ul>
+            <li>
+              <a data-fancybox data-src="#order-lightbox" href="javascript:;">234534</a>
+            </li>
+            <li>
+              <a data-fancybox data-src="#order-lightbox" href="javascript:;">54325</a>
+            </li>
+            <li>
+              <a data-fancybox data-src="#order-lightbox" href="javascript:;">675466</a>
+            </li>
+            <li>
+              <a data-fancybox data-src="#order-lightbox" href="javascript:;">52345</a>
+            </li>
+            <li>
+              <a data-fancybox data-src="#order-lightbox" href="javascript:;">234523</a>
+            </li>
+            <li>
+              <a data-fancybox data-src="#order-lightbox" href="javascript:;">234543</a>
+            </li>
+            <li>
+              <a data-fancybox data-src="#order-lightbox" href="javascript:;">235424</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="order-lightbox">
+      <div id="cart-detail">
+        <table>
+          <tr>
+            <th data-breakpoints="xs"></th>
+            <th>Producto</th>
+            <th data-breakpoints="xs">Cantidad</th>
+            <th>Precio</th>
+          </tr>
+          <tr>
+            <td><img src="assets/img/prod-list-item.png" alt=""></td>
+            <td>Esmeralda Malbec</td>
+            <td>
+              1
+            </td>
+            <td>$102,96</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/prod-list-item.png" alt=""></td>
+            <td>Esmeralda Malbec</td>
+            <td>
+              1
+            </td>
+            <td>$102,96</td>
+          </tr>
+          <tr>
+            <td><img src="assets/img/prod-list-item.png" alt=""></td>
+            <td>Esmeralda Malbec</td>
+            <td>
+              1
+            </td>
+            <td>$102,96</td>
+          </tr>
+          <tr id="cart-total">
+            <td></td>
+            <td></td>
+            <td>Total</td>
+            <td>$102,96</td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

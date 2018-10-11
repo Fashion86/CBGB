@@ -1,4 +1,5 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,11 +11,10 @@ export class HeaderComponent implements OnInit {
   title = 'CBGB';
   _open = false;
   token = null;
-  constructor(public el: ElementRef) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
-    console.log(this.token);
   }
 
   openSidebar() {
@@ -29,5 +29,9 @@ export class HeaderComponent implements OnInit {
     document.getElementById('mySidenav').style.width = '0px';
     document.body.classList.remove('locked');
     this._open = !this._open;
+  }
+  logout() {
+    localStorage.setItem('token', null);
+    this.token = null;
   }
 }

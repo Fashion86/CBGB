@@ -1,3 +1,60 @@
-<p>
-  account works!
-</p>
+<app-header></app-header>
+<div id="account" class="content">
+  <h1 class="title"><div class="inner-wrapper">Mi cuenta</div></h1>
+  <div class="inner-wrapper sm">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+        <div id="account-menu">
+          <ul>
+            <li class="active"><a>Mis datos</a></li>
+            <li><a routerLink="/account-order">Mi historial de compras</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+        <div id="account-info">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="flex-column col-12" style="display: inline-flex;">
+              <label class="reactform">
+                <input placeholder="First Name" type="text" [(ngModel)]="edituser.first_name" formControlName="first_name">
+                <mat-error *ngIf="isFieldValid('first_name')">
+                  First Name is required!
+                </mat-error>
+              </label>
+              <label class="reactform">
+                <input placeholder="Last Name" type="text" [(ngModel)]="edituser.last_name" formControlName="last_name">
+                <mat-error *ngIf="isFieldValid('last_name')">
+                  Last Name is required!
+                </mat-error>
+              </label>
+              <label class="reactform">
+                <input placeholder="User Name" type="text" [(ngModel)]="edituser.username" formControlName="username">
+                <mat-error *ngIf="isFieldValid('username')">
+                  User Name is required!
+                </mat-error>
+              </label>
+              <label class="reactform">
+                <input placeholder="Email" type="email" [(ngModel)]="edituser.email" pattern="[^@]+@[^@]+" formControlName="email">
+                <mat-error *ngIf="isFieldValid('email')">
+                  Email is required!
+                </mat-error>
+              </label>
+              <label class="reactform">
+                <input placeholder="Contacto" type="text" [(ngModel)]="edituser.contacto" formControlName="contacto">
+                <mat-error *ngIf="isFieldValid('contacto')">
+                  Contacto is required!
+                </mat-error>
+              </label>
+              <div class="clearfix"></div>
+              <div class="reactform" style="margin-top: 20px">
+                <button type="submit" [disabled]="false" class="btn-cbgb blue float-right">Actualizar datos</button>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
