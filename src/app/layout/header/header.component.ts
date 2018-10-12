@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfigService } from '../../services/config.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,8 @@ export class HeaderComponent implements OnInit {
   title = 'CBGB';
   _open = false;
   token = null;
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private  conf: ConfigService) { }
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
@@ -31,7 +33,7 @@ export class HeaderComponent implements OnInit {
     this._open = !this._open;
   }
   logout() {
-    localStorage.setItem('token', null);
     this.token = null;
+    this.conf.forget();
   }
 }

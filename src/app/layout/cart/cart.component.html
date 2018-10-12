@@ -48,8 +48,8 @@
                 </tr>
             </table>
             <div id="cart-options">
-                <a href="#" class="float-left btn-cbgb white"><i class="fa fa-angle-left"></i> Volver a Tienda</a>
-                <a href="#" class="float-right btn-cbgb blue"><i class="fa fa-check"></i> Confirmar pedido</a>
+                <a routerLink="/products" class="float-left btn-cbgb white"><i class="fa fa-angle-left"></i> Volver a Tienda</a>
+                <button type="button" [disabled]="false" class="btn-cbgb blue float-right" (click)="order()"><i class="fa fa-check"></i>Confirmar pedido</button>
                 <div class="clearfix"></div>
             </div>
         </div>

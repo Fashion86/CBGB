@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { ConfigService } from '../../services/config.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,10 +18,11 @@ export class LoginComponent implements OnInit {
   private formSubmitAttempt: boolean;
   constructor(private formBuilder: FormBuilder,
               private  userapi: UserService,
+              private  conf: ConfigService,
               private router: Router) {
     this.form = this.formBuilder.group({
-      username: [null, [Validators.required]],
-      password: [null, [Validators.required]]
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
@@ -29,6 +31,10 @@ export class LoginComponent implements OnInit {
     this.password = '';
     this.errormsg = null;
     this.formSubmitAttempt = false;
+    // if (this.auth.canAutoLogin()) {
+    //   this.loaderService.display(false);
+    //   this.router.navigate(['admin/dashboard']);
+    // }
   }
 
   onSubmit() {
@@ -36,15 +42,22 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       const userdata = {username: this.username, password: this.password};
       this.userapi.login(userdata).subscribe(data => {
-        localStorage.setItem('token', JSON.stringify(data['token']));
-        this.router.navigate(['/home']);
-        // this.error = false;
+        this.conf.setToken(data['token']);
+        this.setUser();
       }, err => {
         // this.error = true;
         this.errormsg = 'Login Failed!';
       });
     }
 
+  }
+  setUser() {
+    this.userapi.getUser().subscribe(data => {
+      this.conf.setUser(JSON.stringify(data));
+      this.router.navigate(['/home']);
+    }, err => {
+      this.errormsg = 'Login Failed!';
+    });
   }
   isFieldValid(field: string) {
     return (!this.form.get(field).valid && this.form.get(field).touched) ||
