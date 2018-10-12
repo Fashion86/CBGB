@@ -8,6 +8,7 @@ import { RegisterComponent } from '../layout/register/register.component';
 import { ForgotPasswdComponent } from '../layout/forgot-passwd/forgot-passwd.component';
 import { AccountComponent } from '../layout/account/account.component';
 import { AccountOrderComponent } from '../layout/account/account-order/account-order.component';
+import { HelpersComponent } from '../layout/helpers/helpers.component';
 
 const routes: Routes = [
   { path: 'home',  component: HomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'forgot-passwd',  component: ForgotPasswdComponent},
   { path: 'account',  component: AccountComponent},
   { path: 'account-order',  component: AccountOrderComponent},
+  { path: 'helper',  component: HelpersComponent},
   { path: '**',  redirectTo: '/home', pathMatch: 'full'}
 ];
 @NgModule({
