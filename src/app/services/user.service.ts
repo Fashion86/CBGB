@@ -8,17 +8,17 @@ import { map } from 'rxjs/operators';
 export class UserService {
 
   baseUrl = 'http://app.gioping.com/api/v1';
-  private headers = new HttpHeaders().set('Content-Type', 'application/json');
+  // private headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private _http: HttpClient) { }
 
   addUser(data) {
-    return this._http.post(this.baseUrl + '/signup/', data, {headers: this.headers})
+    return this._http.post(this.baseUrl + '/signup/', data)
       .pipe(
         map((response: Response) => response)
       );
   }
   login(data) {
-    return this._http.post(this.baseUrl + '/login/', data, this.jwt())
+    return this._http.post(this.baseUrl + '/login/', data)
       .pipe(
         map((response: Response) => response)
       );
@@ -35,39 +35,32 @@ export class UserService {
         map((response: Response) => response)
       );
   }
-  searchData(strparam) {
-    return this._http.get(this.baseUrl + '/search', {headers: this.headers})
+  getItem(id) {
+    return this._http.get(this.baseUrl + '/item/' + id + '/', this.jwt())
       .pipe(
         map((response: Response) => response)
       );
   }
-// ***************** Location CRUD ***************** //
-  addLocation(data) {
-    return this._http.post(this.baseUrl + '/production/location', data, {headers: this.headers})
+  deleteItem(id) {
+    return this._http.delete(this.baseUrl + '/item/' + id + '/', this.jwt())
       .pipe(
         map((response: Response) => response)
       );
   }
-  updateLocation(data, id) {
-    return this._http.put(this.baseUrl + '/production/location/' + id, data, {headers: this.headers})
+  addOden(data) {
+    return this._http.post(this.baseUrl + '/orden_de_compra/', data, this.jwt())
       .pipe(
         map((response: Response) => response)
       );
   }
-  getAllLocation() {
-    return this._http.get(this.baseUrl + '/production/location',  {headers: this.headers})
+  getOdenList() {
+    return this._http.get(this.baseUrl + '/orden_de_compra/', this.jwt())
       .pipe(
         map((response: Response) => response)
       );
   }
-  locationPhoto(id, formdata) {
-    return this._http.post(this.baseUrl + '/production/location/' + id + '/photo', formdata, )
-      .pipe(
-        map((response: Response) => response)
-      );
-  }
-  deleteLocation(id) {
-    return this._http.delete(this.baseUrl + '/production/location/' + id, {headers: this.headers})
+  updateOden(data, id) {
+    return this._http.put(this.baseUrl + '/orden_de_compra/' + id + '/', data, this.jwt())
       .pipe(
         map((response: Response) => response)
       );
