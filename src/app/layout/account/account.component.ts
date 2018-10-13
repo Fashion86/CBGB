@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../../model/user';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ConfigService } from '../../services/config.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-account',
@@ -19,7 +20,8 @@ export class AccountComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private  userapi: UserService,
               private  conf: ConfigService,
-              private router: Router) {
+              private router: Router,
+              private alerts: ToastrService) {
     this.form = this.formBuilder.group({
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
@@ -38,10 +40,9 @@ export class AccountComponent implements OnInit {
     this.formSubmitAttempt = true;
     // if (this.form.valid) {
       this.userapi.updateUser(this.edituser).subscribe(res => {
-        console.log(res);
+        this.alerts.success('Update Success!', 'Success!');
        }, err => {
-        // this.error = true;
-        this.errormsg = 'Update Failed!';
+        this.alerts.error('Update Failed!', 'Error!');
       });
     // }
   }

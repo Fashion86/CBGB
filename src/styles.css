@@ -2,6 +2,7 @@
 @import "assets/css/style.css";
 @import "assets/css/libs.css";
 @import "../node_modules/font-awesome/css/font-awesome.css";
+@import '~ngx-toastr/toastr.css';
 
 .mat-error {
     float: right;

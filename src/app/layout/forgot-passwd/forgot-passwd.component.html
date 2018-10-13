@@ -1,3 +1,23 @@
-<p>
-  forgot-passwd works!
-</p>
+<app-header></app-header>
+<div id="login" class="content">
+  <h1 class="title"><div class="inner-wrapper">Recuperar contraseña</div></h1>
+  <div class="inner-wrapper xs">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="flex-column col-12" style="display: inline-flex;">
+        <label class="reactform">
+          <input placeholder="Email" type="text" [(ngModel)]="email" formControlName="email">
+          <mat-error *ngIf="isFieldValid('email')">
+            Email is required!
+          </mat-error>
+        </label>
+       <div class="clearfix"></div>
+        <div class="reactform" style="margin-top: 20px">
+          <a routerLink="/login" style="margin-right: 15px">Iniciar sesión</a>
+          <button type="submit" [disabled]="false" class="btn-cbgb blue float-right">Enviar</button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>

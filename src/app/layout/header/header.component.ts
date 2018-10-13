@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     this.token = null;
+    this.closeSidebar();
     this.conf.forget();
   }
 }

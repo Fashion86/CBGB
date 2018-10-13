@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { UserService } from '../../services/user.service';
 import { ConfigService } from '../../services/config.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private  userapi: UserService,
               private  conf: ConfigService,
-              private router: Router) {
+              private router: Router,
+              private alerts: ToastrService) {
     this.form = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -31,6 +33,9 @@ export class LoginComponent implements OnInit {
     this.password = '';
     this.errormsg = null;
     this.formSubmitAttempt = false;
+
+    // this.alerts.setMessage('Configurations saved successfully!', 'success');
+    // this.alerts.setMessage('Please save all the changes before closing', 'warn');
     // if (this.auth.canAutoLogin()) {
     //   this.loaderService.display(false);
     //   this.router.navigate(['admin/dashboard']);
@@ -45,8 +50,7 @@ export class LoginComponent implements OnInit {
         this.conf.setToken(data['token']);
         this.setUser();
       }, err => {
-        // this.error = true;
-        this.errormsg = 'Login Failed!';
+        this.alerts.error('Unknown User!', 'Error!');
       });
     }
 
@@ -54,9 +58,10 @@ export class LoginComponent implements OnInit {
   setUser() {
     this.userapi.getUser().subscribe(data => {
       this.conf.setUser(JSON.stringify(data));
+      this.alerts.success('Login Success!', 'Success!');
       this.router.navigate(['/home']);
     }, err => {
-      this.errormsg = 'Login Failed!';
+      this.alerts.error('Unknown User!', 'Error!');
     });
   }
   isFieldValid(field: string) {

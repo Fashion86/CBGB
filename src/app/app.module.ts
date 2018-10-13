@@ -12,6 +12,7 @@ import {SlideshowModule} from 'ng-simple-slideshow';
 import { SidebarModule } from 'ng-sidebar';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './router/router.module';
 import { HeaderComponent } from './layout/header/header.component';
@@ -52,6 +53,7 @@ import { AccountOrderComponent } from './layout/account/account-order/account-or
     MaterialModule,
     SlideshowModule,
     SidebarModule.forRoot(),
+    ToastrModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
