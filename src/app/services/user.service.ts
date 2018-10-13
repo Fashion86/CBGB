@@ -65,6 +65,12 @@ export class UserService {
         map((response: Response) => response)
       );
   }
+  getBebidaList() {
+    return this._http.get(this.baseUrl + /bebidas/)
+      .pipe(
+        map((response: Response) => response)
+      );
+  }
   private jwt() {
     // create authorization header with jwt token
     const token = JSON.parse(localStorage.getItem('token'));

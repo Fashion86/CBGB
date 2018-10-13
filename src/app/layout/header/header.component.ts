@@ -23,13 +23,13 @@ export class HeaderComponent implements OnInit {
     // const sidevar = this.el.nativeElement.ge('mySidenav');
     // console.log(sidevar)
     document.getElementById('mySidenav').style.width = (window.screen.width) + 'px';
-    document.body.classList.add('locked');
+    // document.body.classList.add('locked');
     this._open = !this._open;
   }
 
   closeSidebar() {
     document.getElementById('mySidenav').style.width = '0px';
-    document.body.classList.remove('locked');
+    // document.body.classList.remove('locked');
     this._open = !this._open;
   }
   logout() {

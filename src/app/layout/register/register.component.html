@@ -30,9 +30,6 @@
         </label>
         <label class="reactform">
           <input placeholder="Contacto" type="text" [(ngModel)]="newuser.contacto" formControlName="contacto">
-          <mat-error *ngIf="isFieldValid('contacto')">
-            Contacto is required!
-          </mat-error>
         </label>
         <label class="reactform">
           <input placeholder="Password" type="password" [(ngModel)]="newuser.password" (click)="inputpass()" formControlName="password">

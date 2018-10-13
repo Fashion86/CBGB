@@ -13,6 +13,7 @@ import { SidebarModule } from 'ng-sidebar';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppRoutingModule } from './router/router.module';
 import { HeaderComponent } from './layout/header/header.component';
@@ -52,6 +53,7 @@ import { AccountOrderComponent } from './layout/account/account-order/account-or
     AppRoutingModule,
     MaterialModule,
     SlideshowModule,
+    NgxPaginationModule,
     SidebarModule.forRoot(),
     ToastrModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })

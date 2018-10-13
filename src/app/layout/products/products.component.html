@@ -59,84 +59,32 @@
             <h2>
               Estás viendo: <strong>Todas las bodegas</strong>
             </h2>
-            <h3>Bodega Navarro Correas</h3>
-            <ul>
-              <li>
-                <img src="assets/img/prod-list-item.png" alt="">
-                <div>
-                  <h4>Esmeralda Malbec</h4>
-                  <span class="prod-var">Malbec, Cabernet, Red Blend, Sauv. Blanc</span>
-                </div>
-                <span class="prod-price ">$102,96</span>
-                <button>Agregar</button>
-              </li>
-              <li class="promo">
-                <img src="assets/img/prod-list-item.png" alt="">
-                <div>
-                  <h4>Esmeralda Malbec</h4>
-                  <span class="prod-var">Malbec, Cabernet, Red Blend, Sauv. Blanc</span>
-                </div>
-                <span class="prod-price ">$102,96</span>
-                <button>Agregar</button>
-              </li>
-              <li class="new">
-                <img src="assets/img/prod-list-item.png" alt="">
-                <div>
-                  <h4>Esmeralda Malbec</h4>
-                  <span class="prod-var">Malbec, Cabernet, Red Blend, Sauv. Blanc</span>
-                </div>
-                <span class="prod-price ">$102,96</span>
-                <button>Agregar</button>
-              </li>
-              <li>
-                <img src="assets/img/prod-list-item.png" alt="">
-                <div>
-                  <h4>Esmeralda Malbec</h4>
-                  <span class="prod-var">Malbec, Cabernet, Red Blend, Sauv. Blanc</span>
-                </div>
-                <span class="prod-price ">$102,96</span>
-                <button>Agregar</button>
-              </li>
+            <ul *ngFor="let group of bebidagroup">
+              <h3>{{group.key}}</h3>
+                  <li *ngFor="let bebida of group.value">
+                    <div [ngClass]="[bebida.nuevo ? 'new' : '',  bebida.promo ? 'promo' : '', (!bebida.nuevo && !bebida.promo) ? '' : '']">
+                      <img src="assets/img/prod-list-item.png" alt="">
+                      <div>
+                        <h4>{{bebida.marca}}</h4>
+                        <span class="prod-var">{{bebida.descripcion}}</span>
+                      </div>
+                      <span class="prod-price ">${{bebida.precio_unidad}}</span>
+                      <button>Agregar</button>
+                    </div>
+                  </li>
             </ul>
-            <h3>Bodega Navarro Correas</h3>
-            <ul>
-              <li>
-                <img src="assets/img/prod-list-item.png" alt="">
-                <div>
-                  <h4>Esmeralda Malbec</h4>
-                  <span class="prod-var">Malbec, Cabernet, Red Blend, Sauv. Blanc</span>
-                </div>
-                <span class="prod-price ">$102,96</span>
-                <button>Agregar</button>
-              </li>
-              <li>
-                <img src="assets/img/prod-list-item.png" alt="">
-                <div>
-                  <h4>Esmeralda Malbec</h4>
-                  <span class="prod-var">Malbec, Cabernet, Red Blend, Sauv. Blanc</span>
-                </div>
-                <span class="prod-price ">$102,96</span>
-                <button>Agregar</button>
-              </li>
-              <li>
-                <img src="assets/img/prod-list-item.png" alt="">
-                <div>
-                  <h4>Esmeralda Malbec</h4>
-                  <span class="prod-var">Malbec, Cabernet, Red Blend, Sauv. Blanc</span>
-                </div>
-                <span class="prod-price ">$102,96</span>
-                <button>Agregar</button>
-              </li>
-              <li>
-                <img src="assets/img/prod-list-item.png" alt="">
-                <div>
-                  <h4>Esmeralda Malbec</h4>
-                  <span class="prod-var">Malbec, Cabernet, Red Blend, Sauv. Blanc</span>
-                </div>
-                <span class="prod-price ">$102,96</span>
-                <button>Agregar</button>
-              </li>
-            </ul>
+            <!--<pagination-controls  id="some_id"-->
+                                  <!--(pageChange)="pageChanged($event)"-->
+                                  <!--maxSize="9"-->
+                                  <!--directionLinks="true"-->
+                                  <!--autoHide="true"-->
+                                  <!--responsive="true"-->
+                                  <!--previousLabel="Previous"-->
+                                  <!--nextLabel="Next"-->
+                                  <!--screenReaderPaginationLabel="Pagination"-->
+                                  <!--screenReaderPageLabel="page"-->
+                                  <!--screenReaderCurrentLabel="You're on page">-->
+            <!--</pagination-controls>-->
           </div>
         </div>
       </div>

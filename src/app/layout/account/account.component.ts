@@ -27,7 +27,7 @@ export class AccountComponent implements OnInit {
       last_name: ['', [Validators.required]],
       username: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      contacto: ['', [Validators.required]],
+      contacto: [''],
       confirmpass: ['', [Validators.required]]
     });
   }

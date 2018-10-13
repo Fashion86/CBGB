@@ -1134,7 +1134,7 @@ h1.title {
 
 #products-list>ul {}
 
-#products-list>ul>li {
+#products-list>ul>li>div {
     display: flex;
     flex-flow: row;
     padding: 10px 20px 10px 0;
@@ -1143,14 +1143,14 @@ h1.title {
 
 #products-list>ul>li div {}
 
-#products-list>ul>li.promo div,
-#products-list>ul>li.new div {
+#products-list>ul>li>div.promo div,
+#products-list>ul>li>div.new div {
     position: relative;
     padding-right: 45px;
 }
 
-#products-list>ul>li.promo div:after,
-#products-list>ul>li.new div:after {
+#products-list>ul>li>div.promo div:after,
+#products-list>ul>li>div.new div:after {
     display: inline-block;
     width: 36px;
     height: 36px;
@@ -1169,20 +1169,20 @@ h1.title {
     right: 0;
 }
 
-#products-list>ul>li.promo {
+#products-list>ul>li>div.promo {
     background: #fff2f2;
 }
 
-#products-list>ul>li.promo div:after {
+#products-list>ul>li>div.promo div:after {
     content: 'Promo';
     background: #e92626;
 }
 
-#products-list>ul>li.new {
+#products-list>ul>li>div.new {
     background: #e7ffeb;
 }
 
-#products-list>ul>li.new div:after {
+#products-list>ul>li>div.new div:after {
     content: 'Nuevo';
     background: #2ac246;
 }
