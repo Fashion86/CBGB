@@ -2,10 +2,10 @@
 <div id="cart" class="content">
     <h1 class="title"><div class="inner-wrapper">Confirmación de compra</div></h1>
     <div class="inner-wrapper sm">
-        <div id="cart-user">
+        <div id="cart-user" *ngIf="currentuser">
             <h2><i class="fa fa-user"></i> Datos de usuario</h2>
-            <div><span>Nombre: </span> Lorem Ipsum</div>
-            <div><span>E-mail: </span> lorem@ipsum.com</div>
+            <div><span>Nombre: </span> {{currentuser.username}}</div>
+            <div><span>E-mail: </span> {{currentuser.email}}</div>
             <div><span>Teléfono: </span> 12345678</div>
         </div>
         <div id="cart-detail">
@@ -48,7 +48,7 @@
                 </tr>
             </table>
             <div id="cart-options">
-                <a routerLink="/products" class="float-left btn-cbgb white"><i class="fa fa-angle-left"></i> Volver a Tienda</a>
+                <button routerLink="/products" class="float-left btn-cbgb white"><i class="fa fa-angle-left"></i> Volver a Tienda</button>
                 <button type="button" [disabled]="false" class="btn-cbgb blue float-right" (click)="order()"><i class="fa fa-check"></i>Confirmar pedido</button>
                 <div class="clearfix"></div>
             </div>

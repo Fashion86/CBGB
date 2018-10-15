@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from '../../services/config.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  currentuser: any;
+  constructor(private  conf: ConfigService) { }
 
   ngOnInit() {
+    this.currentuser = this.conf.getUser();
   }
   order() {
 

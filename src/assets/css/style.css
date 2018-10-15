@@ -1044,7 +1044,10 @@ h1.title {
     line-height: 1;
     display: block;
 }
-
+#products-filter>ul>li>a:hover{
+    cursor: pointer;
+    color: #1d284f;
+}
 #products-filter li.selected>a {
     background: #ececec;
 }

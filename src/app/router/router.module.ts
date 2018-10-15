@@ -14,7 +14,7 @@ import { HelpersComponent } from '../layout/helpers/helpers.component';
 
 const routes: Routes = [
   { path: 'home',  component: HomeComponent},
-  { path: 'cart',  component: CartComponent},
+  { path: 'cart',  component: CartComponent, canActivate: [AuthGuardService]},
   { path: 'products',  component: ProductsComponent},
   { path: 'login',  component: LoginComponent},
   { path: 'register',  component: RegisterComponent},
