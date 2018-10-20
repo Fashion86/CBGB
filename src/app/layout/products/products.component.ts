@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ConfigService } from '../../services/config.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Bebida } from '../../model/bebida';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -19,6 +19,7 @@ export class ProductsComponent implements OnInit {
   origngroup: any[] = [];
   editbebida: Bebida;
   odervalue = true;
+  checkcategory: string;
   categories: any[] = ['VINO', 'CHAMPAGNE', 'WHISKY', 'ESPIRITUOSA', 'CERVEZA', 'ENERGIZANTE',
     'COOLERS', 'AGUA_GASEOSA_GRANADINA', 'FERNET_Y_APERITIVO', 'RON', 'VODKA', 'GIN', 'BOURBON'];
   menuconfig = {
@@ -33,23 +34,16 @@ export class ProductsComponent implements OnInit {
               private  conf: ConfigService,
               private router: Router,
               private alerts: ToastrService,
-              private spinner: NgxSpinnerService) {
-    // this.menuitems.push(new TreeviewItem({
-    //   text: 'IT', value: 'ggg', children: [
-    //     {
-    //       text: 'Networking', value: 'Networking'
-    //     },
-    //     {
-    //       text: 'Network', value: 'Network'
-    //     }
-    //   ]
-    // }));
-    // this.menuitems.push(new TreeviewItem({
-    //   text: 'net', value: 'ggg'
-    // }));
+              private spinner: NgxSpinnerService,
+              private route: ActivatedRoute) {
+
   }
 
   ngOnInit() {
+    this.checkcategory = null;
+    this.route.params.subscribe(params => {
+      this.checkcategory = params['item'];
+    });
     this.editbebida = new Bebida();
     this.spinner.show();
     this.getAllbebida();
@@ -63,49 +57,77 @@ export class ProductsComponent implements OnInit {
     });
   }
   sortbebida(data) {
+    let shorgroup: any[] = [];
     const group = _.mapValues(_.groupBy(data, 'categoria'),
       clist => clist.map(bebida => _.omit(bebida, 'categoria')));
-    this.bebidagroup = Object.keys(group).map(key => ({ key, value: group[key] }));
-    this.bebidagroup.forEach(bgroup => {
+    shorgroup = Object.keys(group).map(key => ({ key, value: group[key] }));
+    shorgroup.forEach(bgroup => {
       bgroup.value = _.orderBy(bgroup.value, ['precio_unidad'], ['asc']);
     });
-    this.origngroup = this.bebidagroup;
-    this.setmenu(this.origngroup);
+
+    let newgroup: any[] = [];
+    if (this.checkcategory) {
+      if (this.checkcategory === 'Vinos') {
+        newgroup.push(shorgroup.find(t => t.key === 'VINO'));
+        newgroup.push(shorgroup.find(t => t.key === 'WHISKY'));
+      }
+    } else {
+      newgroup = shorgroup;
+    }
+    this.setmenu(newgroup);
     this.spinner.hide();
 
   }
   setmenu(alldata) {
     alldata.forEach(d => {
+      const newgroup = _(d.value)
+        .groupBy(x => x.marca)
+        .map((value, key) => ({marca: key, datas: value}))
+        .value();
+      this.origngroup.push({key: d.key, datas: newgroup});
+      const submenu: any[] = [];
+      newgroup.forEach(dd => {
+        submenu.push({text: dd.marca, value: dd.marca});
+      });
       this.menuitems.push(new TreeviewItem({
-        text: d.key, value: d.key
+        text: d.key, value: d.key, children: submenu
       }));
     });
+    this.bebidagroup = this.origngroup;
   }
   order(flag) {
     this.spinner.show();
     if (flag) {
       this.bebidagroup.forEach(bgroup => {
-        bgroup.value = _.orderBy(bgroup.value, ['precio_unidad'], ['asc']);
+        bgroup.datas.forEach(group => {
+          group.datas = _.orderBy(group.datas, ['precio_unidad'], ['asc']);
+        });
       });
       this.spinner.hide();
     } else {
       this.bebidagroup.forEach(bgroup => {
-        bgroup.value = _.orderBy(bgroup.value, ['precio_unidad'], ['desc']);
+        bgroup.datas.forEach(group => {
+          group.datas = _.orderBy(group.datas, ['precio_unidad'], ['desc']);
+        });
       });
       this.spinner.hide();
     }
   }
-  slectgroup(groupkey) {
-    const group = _.find(this.origngroup, pp => pp.key === groupkey);
+
+  onSelectedMenuChange(groups) {
     this.bebidagroup = [];
-    this.bebidagroup.push(group);
-  }
-  onSelectedChange(groups) {
-    this.bebidagroup = [];
-    groups.forEach(key => {
-      const group = _.find(this.origngroup, d => d.key === key);
-      this.bebidagroup.push(group);
+    const newdatas: any[] = [];
+    groups.forEach(pp => {
+      this.origngroup.forEach(bgroup => {
+        const item = _.find(bgroup.datas, p => p['marca'] === pp);
+        if (item !== -1 && item !== undefined) {
+          newdatas.push({key: bgroup.key, datas: item});
+        }
+      });
     });
+    const group = _.mapValues(_.groupBy(newdatas, 'key'),
+      clist => clist.map(bebida => _.omit(bebida.datas)));
+    this.bebidagroup = Object.keys(group).map(key => ({ key: key, datas: group[key] }));
   }
   pageChanged(event) {
 

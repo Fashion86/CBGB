@@ -16,3 +16,6 @@
     color: transparent;
     display: none;
 }
+.fixed-top {
+    background-color: white !important;
+}

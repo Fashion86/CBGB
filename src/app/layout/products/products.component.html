@@ -3,12 +3,16 @@
 <div id="products" class="content">
   <div id="products-title">
     <div class="inner-wrapper">
-      <h1><img src="assets/img/title-vinos.png" alt="">Vinos</h1>
+      <h1><img src="assets/img/title-vinos.png" alt=""><span *ngIf="checkcategory">{{checkcategory}}</span></h1>
     </div>
   </div>
   <div id="breadcrumbs">
     <div class="inner-wrapper">
-      <a routerLink="/home">CBGB</a> <i class="fa fa-angle-right"></i> <a routerLink="/products">Productos</a> <i class="fa fa-angle-right"></i> <a href="">Vinos</a> <i class="fa fa-angle-right"></i> <span>Todos</span>
+      <a routerLink="/home">CBGB</a>
+        <i class="fa fa-angle-right"></i> <a routerLink="/products">Productos</a>
+        <i *ngIf="checkcategory" class="fa fa-angle-right"></i> <a *ngIf="checkcategory" [routerLink]="['/products', checkcategory]">{{checkcategory}}</a>
+        <!--<i class="fa fa-angle-right"></i> <a href="">Vinos</a>-->
+        <!--<i class="fa fa-angle-right"></i> <span>Todos</span>-->
     </div>
   </div>
   <div id="products-main">
@@ -26,30 +30,11 @@
 
                 <div class="clearfix"></div>
               </div>
-              <!--<ul *ngFor="let group of origngroup">-->
-                <!--<li>-->
-                  <!--<a (click)="slectgroup(group.key)">{{group.key}}({{group.value.length}})</a>-->
-                <!--</li>-->
-
                 <ngx-treeview
                         [config]="menuconfig"
                         [items]="menuitems"
-                        (selectedChange)="onSelectedChange($event)">
+                        (selectedChange)="onSelectedMenuChange($event)">
                 </ngx-treeview>
-                <!--<li class="selected"><a>Vinos</a>-->
-                  <!--<ul>-->
-                    <!--<li class="active"><a href="#">Todos</a></li>-->
-                    <!--<li><a href="#">La rural</a></li>-->
-                    <!--<li><a href="#">Navarro Correas</a></li>-->
-                    <!--<li><a href="#">El Esteco</a></li>-->
-                    <!--<li><a href="#">Bodega Trapiche</a></li>-->
-                    <!--<li class="all"><a href="#"><i class="far fa-eye"></i>Ver todas las bodegas</a></li>-->
-                  <!--</ul>-->
-                <!--</li>-->
-                <!--<li><a href="">Champagnes</a></li>-->
-                <!--<li><a href="">Whiskies y espirituosas</a></li>-->
-                <!--<li><a href="">Cervezas, coolers y sin alcohol</a></li>-->
-              <!--</ul>-->
             </div>
             <div id="products-order">
               <div class="products-option-title">
@@ -67,21 +52,24 @@
         </div>
         <div class="col-lg-9 col-md-12 col-sm-12 col-12">
           <div id="products-list">
-            <h2>
-              Estás viendo: <strong>Todas las bodegas</strong>
-            </h2>
+            <!--<h2>-->
+              <!--Estás viendo: <strong>Todas las bodegas</strong>-->
+            <!--</h2>-->
             <ul *ngFor="let group of bebidagroup">
-              <h3>{{group.key}} ({{group.value.length}})</h3>
-                  <li *ngFor="let bebida of group.value">
-                    <div [ngClass]="[bebida.nuevo ? 'new' : '',  bebida.promo ? 'promo' : '', (!bebida.nuevo && !bebida.promo) ? '' : '']">
-                      <img src="assets/img/prod-list-item.png" alt="">
-                      <div>
-                        <h4>{{bebida.marca}}</h4>
-                        <span class="prod-var">{{bebida.descripcion}}</span>
+              <h2>{{group.key}}</h2>
+                  <li *ngFor="let bebidas of group.datas">
+                      <h3>{{group.key}}: {{bebidas.marca}}  ({{bebidas.datas.length}})</h3>
+                      <div *ngFor="let bebida of bebidas.datas">
+                          <div [ngClass]="[bebida.nuevo ? 'new' : '',  bebida.promo ? 'promo' : '', (!bebida.nuevo && !bebida.promo) ? '' : '']">
+                              <img src="assets/img/prod-list-item.png" alt="">
+                              <div>
+                                  <h4>{{bebida.marca}}</h4>
+                                  <span class="prod-var">{{bebida.descripcion}}</span>
+                              </div>
+                              <span class="prod-price ">${{bebida.precio_unidad}}</span>
+                              <button routerLink="/cart">Agregar</button>
+                          </div>
                       </div>
-                      <span class="prod-price ">${{bebida.precio_unidad}}</span>
-                      <button routerLink="/cart">Agregar</button>
-                    </div>
                   </li>
             </ul>
             <!--<pagination-controls  id="some_id"-->

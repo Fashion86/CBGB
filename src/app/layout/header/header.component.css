@@ -10,6 +10,7 @@
     padding-top: 60px;
     text-align: center;
     z-index: 50;
+    margin-top: 10px;
     /*pointer-events: none;*/
     /*opacity: 0;*/
 }

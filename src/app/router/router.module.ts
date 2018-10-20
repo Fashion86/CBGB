@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'home',  component: HomeComponent},
   { path: 'cart',  component: CartComponent, canActivate: [AuthGuardService]},
   { path: 'products',  component: ProductsComponent},
+  { path: 'products/:item',  component: ProductsComponent},
   { path: 'login',  component: LoginComponent},
   { path: 'register',  component: RegisterComponent},
   { path: 'forgot-passwd',  component: ForgotPasswdComponent},
