@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
+import { Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
 
+  private subject = new Subject<any>();
   constructor() { }
   setToken(token: string): void {
     localStorage.setItem('token', JSON.stringify(token));
@@ -19,7 +22,7 @@ export class ConfigService {
     localStorage.setItem('currentuser', JSON.stringify(user));
   }
 
-  addCart(data: any): void {
+  addCart(data: any) {
     if (localStorage.getItem('cart')) {
       const old_item = JSON.parse(localStorage.getItem('cart'));
       old_item.push(data);
@@ -27,9 +30,14 @@ export class ConfigService {
     } else {
       localStorage.setItem('cart', JSON.stringify([data]));
     }
+    this.subject.next(JSON.parse(localStorage.getItem('cart')));
   }
-  updateCart(data: any): void {
+  updateCart(data: any) {
       localStorage.setItem('cart', JSON.stringify(data));
+      this.subject.next(JSON.parse(localStorage.getItem('cart')));
+  }
+  getCartsync() {
+    return this.subject.asObservable();
   }
   getCart() {
     return JSON.parse(localStorage.getItem('cart'));
@@ -39,6 +47,10 @@ export class ConfigService {
   }
   canAutoLogin(): boolean {
     return this.getToken() !== null;
+  }
+
+  clearcart() {
+    this.subject.next();
   }
 
   forget(): void {

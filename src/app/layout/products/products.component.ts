@@ -143,6 +143,7 @@ export class ProductsComponent implements OnInit {
   }
   addcart(product) {
     this.conf.addCart(product);
+    // this.conf.sendServiceID(6);
     this.alerts.success('added product');
   }
   pageChanged(event) {

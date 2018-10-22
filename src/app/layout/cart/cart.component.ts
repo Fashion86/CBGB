@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../../services/config.service';
+import { Ordencompra } from '../../model/ordencompra';
+import { Item } from '../../model/item';
 import * as _ from 'lodash';
 import {NgxSmartModalService} from 'ngx-smart-modal';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-cart',
@@ -15,6 +19,9 @@ export class CartComponent implements OnInit {
   currentuser: any;
   cartproducts: any[] = [];
   totalprice: number;
+  orderdata: Ordencompra;
+  items: Item[] = [];
+  subscription: Subscription;
   constructor(private  conf: ConfigService,
               public modalService: NgxSmartModalService,
               private alerts: ToastrService,
@@ -24,6 +31,7 @@ export class CartComponent implements OnInit {
     this.currentuser = this.conf.getUser();
     this.cartproducts = this.conf.getCart();
     this.setTotal();
+    this.orderdata = new Ordencompra();
   }
   setTotal() {
     this.totalprice = 0.0;
@@ -47,7 +55,9 @@ export class CartComponent implements OnInit {
   order() {
     this.modalService.getModal('confirm').close();
     if (this.conf.getUser()) {
-
+        this.items = [];
+      const result = _.countBy(this.cartproducts, 'descripcion');
+      console.log(result)
     } else {
       this.router.navigate(['/login']);
     }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfigService } from '../../services/config.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -13,12 +14,16 @@ export class HeaderComponent implements OnInit {
   _open = false;
   token = null;
   usercart: any[] = [];
+  subscription: Subscription;
   constructor(private router: Router,
               private  conf: ConfigService) { }
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
     this.usercart = this.conf.getCart();
+    this.subscription = this.conf.getCartsync().subscribe(data => {
+      this.usercart = data;
+    });
   }
 
   openSidebar() {
