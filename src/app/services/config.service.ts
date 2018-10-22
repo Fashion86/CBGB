@@ -19,6 +19,21 @@ export class ConfigService {
     localStorage.setItem('currentuser', JSON.stringify(user));
   }
 
+  addCart(data: any): void {
+    if (localStorage.getItem('cart')) {
+      const old_item = JSON.parse(localStorage.getItem('cart'));
+      old_item.push(data);
+      localStorage.setItem('cart', JSON.stringify(old_item));
+    } else {
+      localStorage.setItem('cart', JSON.stringify([data]));
+    }
+  }
+  updateCart(data: any): void {
+      localStorage.setItem('cart', JSON.stringify(data));
+  }
+  getCart() {
+    return JSON.parse(localStorage.getItem('cart'));
+  }
   getUser() {
     return JSON.parse(JSON.parse(localStorage.getItem('currentuser')));
   }

@@ -12,11 +12,13 @@ export class HeaderComponent implements OnInit {
   title = 'CBGB';
   _open = false;
   token = null;
+  usercart: any[] = [];
   constructor(private router: Router,
               private  conf: ConfigService) { }
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
+    this.usercart = this.conf.getCart();
   }
 
   openSidebar() {

@@ -40,9 +40,9 @@ export class AccountComponent implements OnInit {
     this.formSubmitAttempt = true;
     // if (this.form.valid) {
       this.userapi.updateUser(this.edituser).subscribe(res => {
-        this.alerts.success('Update Success!', 'Success!');
+        this.alerts.success('Update Success!');
        }, err => {
-        this.alerts.error('Update Failed!', 'Error!');
+        this.alerts.error('Update Failed!');
       });
     // }
   }

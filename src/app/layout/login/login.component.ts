@@ -33,13 +33,6 @@ export class LoginComponent implements OnInit {
     this.password = '';
     this.errormsg = null;
     this.formSubmitAttempt = false;
-
-    // this.alerts.setMessage('Configurations saved successfully!', 'success');
-    // this.alerts.setMessage('Please save all the changes before closing', 'warn');
-    // if (this.auth.canAutoLogin()) {
-    //   this.loaderService.display(false);
-    //   this.router.navigate(['admin/dashboard']);
-    // }
   }
 
   onSubmit() {
@@ -50,7 +43,7 @@ export class LoginComponent implements OnInit {
         this.conf.setToken(data['token']);
         this.setUser();
       }, err => {
-        this.alerts.error('Unknown User!', 'Error!');
+        this.alerts.error('Unknown User!');
       });
     }
 
@@ -58,10 +51,10 @@ export class LoginComponent implements OnInit {
   setUser() {
     this.userapi.getUser().subscribe(data => {
       this.conf.setUser(JSON.stringify(data));
-      this.alerts.success('Login Success!', 'Success!');
+      this.alerts.success( 'Mensaje éxito');
       this.router.navigate(['/home']);
     }, err => {
-      this.alerts.error('Unknown User!', 'Error!');
+      this.alerts.error('Unknown User!');
     });
   }
   isFieldValid(field: string) {

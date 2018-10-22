@@ -7,6 +7,7 @@ import { Bebida } from '../../model/bebida';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TreeviewItem } from 'ngx-treeview';
 import * as _ from 'lodash';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-products',
@@ -35,7 +36,8 @@ export class ProductsComponent implements OnInit {
               private router: Router,
               private alerts: ToastrService,
               private spinner: NgxSpinnerService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              public modalService: NgxSmartModalService) {
 
   }
 
@@ -53,7 +55,8 @@ export class ProductsComponent implements OnInit {
     this.api.getBebidaList().subscribe((res: any) => {
       this.sortbebida(res);
     }, err => {
-      this.alerts.error('get bebidas error!', 'Error!');
+      this.alerts.error('get bebidas error!');
+      this.spinner.hide();
     });
   }
   sortbebida(data) {
@@ -70,6 +73,15 @@ export class ProductsComponent implements OnInit {
       if (this.checkcategory === 'Vinos') {
         newgroup.push(shorgroup.find(t => t.key === 'VINO'));
         newgroup.push(shorgroup.find(t => t.key === 'WHISKY'));
+      } else if (this.checkcategory === 'Champagnes') {
+        newgroup.push(shorgroup.find(t => t.key === 'CHAMPAGNE'));
+      } else if (this.checkcategory === 'Whiskies_Espirituosas') {
+        newgroup.push(shorgroup.find(t => t.key === 'WHISKY'));
+        newgroup.push(shorgroup.find(t => t.key === 'ESPIRITUOSA'));
+      } else if (this.checkcategory === 'Cervezas_alcohol') {
+        newgroup.push(shorgroup.find(t => t.key === 'CERVEZA'));
+        newgroup.push(shorgroup.find(t => t.key === 'VODKA'));
+        newgroup.push(shorgroup.find(t => t.key === 'GIN'));
       }
     } else {
       newgroup = shorgroup;
@@ -128,6 +140,10 @@ export class ProductsComponent implements OnInit {
     const group = _.mapValues(_.groupBy(newdatas, 'key'),
       clist => clist.map(bebida => _.omit(bebida.datas)));
     this.bebidagroup = Object.keys(group).map(key => ({ key: key, datas: group[key] }));
+  }
+  addcart(product) {
+    this.conf.addCart(product);
+    this.alerts.success('added product');
   }
   pageChanged(event) {
 

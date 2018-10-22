@@ -15,43 +15,39 @@
                     <th>Producto</th>
                     <th data-breakpoints="xs">Cantidad</th>
                     <th >Precio</th>
+                    <th ></th>
                 </tr>
-                <tr>
+                <tr *ngFor="let product of cartproducts">
                     <td><img src="assets/img/prod-list-item.png" alt=""></td>
-                    <td>Esmeralda Malbec</td>
+                    <td>{{product.marca}}</td>
                     <td>
                         <input type="number" min="1" step="1" value="1">
                     </td>
-                    <td>$102,96</td>
+                    <td>${{product.precio_unidad}}</td>
+                    <td><a routerLink="/cart" (click)="remove(product)"><i class="fa fa-close"></i></a></td>
                 </tr>
-                <tr>
-                    <td><img src="assets/img/prod-list-item.png" alt=""></td>
-                    <td>Esmeralda Malbec</td>
-                    <td>
-                        <input type="number" min="1" step="1" value="1">
-                    </td>
-                    <td>$102,96</td>
-                </tr>
-                <tr>
-                    <td><img src="assets/img/prod-list-item.png" alt=""></td>
-                    <td>Esmeralda Malbec</td>
-                    <td>
-                        <input type="number" min="1" step="1" value="1">
-                    </td>
-                    <td>$102,96</td>
-                </tr>
-                <tr id="cart-total">
+                 <tr id="cart-total">
                     <td></td>
                     <td></td>
                     <td>Total</td>
-                    <td>$102,96</td>
+                    <td>${{totalprice}}</td>
                 </tr>
             </table>
-            <div id="cart-options">
+            <div>
                 <button routerLink="/products" class="float-left btn-cbgb white"><i class="fa fa-angle-left"></i> Volver a Tienda</button>
-                <button type="button" [disabled]="false" class="btn-cbgb blue float-right" (click)="order()"><i class="fa fa-check"></i>Confirmar pedido</button>
+                <button type="button" [disabled]="false" class="btn-cbgb blue float-right" (click)="confirmorder()"><i class="fa fa-check"></i>Confirmar pedido</button>
                 <div class="clearfix"></div>
             </div>
+            <ngx-smart-modal #confirm identifier="confirm">
+                <h5>Confirmar pedido</h5>
+                <div style="text-align: center">
+                    <span>Are you sure about order?</span>
+                    <br>
+                    <br>
+                    <button class="btn-right cancelbtn" (click)="confirm.close()">Cancelar</button>
+                    <button class="btn-right confirmbtn" (click)="order()"><i class="fa fa-check"></i>Confirmar</button>
+                </div>
+            </ngx-smart-modal>
         </div>
     </div>
 </div>

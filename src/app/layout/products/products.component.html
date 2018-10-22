@@ -23,8 +23,8 @@
             <div id="products-filter">
               <div class="products-option-title">
                 <div id="products-view">
-                  <a href=""><img src="assets/img/ico-list.png" alt=""></a>
-                  <a href=""><img src="assets/img/ico-grid.png" alt=""></a>
+                  <!--<a href=""><img src="assets/img/ico-list.png" alt=""></a>-->
+                  <!--<a href=""><img src="assets/img/ico-grid.png" alt=""></a>-->
                 </div>
                 <h5><i class="fa fa-filter"></i> Filtrar</h5>
 
@@ -50,8 +50,56 @@
             </div>
           </div>
         </div>
+          <ngx-smart-modal #myModal identifier="myModal">
+              <div id="cart-detail">
+                  <table>
+                      <tr>
+                          <th data-breakpoints="xs"></th>
+                          <th>Producto</th>
+                          <th data-breakpoints="xs">Cantidad</th>
+                          <th >Precio</th>
+                      </tr>
+                      <tr>
+                          <td><img src="assets/img/prod-list-item.png" alt=""></td>
+                          <td>Esmeralda Malbec</td>
+                          <td>
+                              <input type="number" min="1" step="1" value="1">
+                          </td>
+                          <td>$102,96</td>
+                      </tr>
+                      <tr>
+                          <td><img src="assets/img/prod-list-item.png" alt=""></td>
+                          <td>Esmeralda Malbec</td>
+                          <td>
+                              <input type="number" min="1" step="1" value="1">
+                          </td>
+                          <td>$102,96</td>
+                      </tr>
+                      <tr>
+                          <td><img src="assets/img/prod-list-item.png" alt=""></td>
+                          <td>Esmeralda Malbec</td>
+                          <td>
+                              <input type="number" min="1" step="1" value="1">
+                          </td>
+                          <td>$102,96</td>
+                      </tr>
+                      <tr id="cart-total">
+                          <td></td>
+                          <td></td>
+                          <td>Total</td>
+                          <td>$102,96</td>
+                      </tr>
+                  </table>
+                  <div id="cart-options">
+                      <button routerLink="/products" class="float-left btn-cbgb white"><i class="fa fa-angle-left"></i> Volver a Tienda</button>
+                      <button type="button" [disabled]="false" class="btn-cbgb blue float-right" (click)="order()"><i class="fa fa-check"></i>Confirmar pedido</button>
+                      <div class="clearfix"></div>
+                  </div>
+              </div>
+          </ngx-smart-modal>
         <div class="col-lg-9 col-md-12 col-sm-12 col-12">
           <div id="products-list">
+              <button (click)="modalService.getModal('myModal').open()">Open myModal</button>
             <!--<h2>-->
               <!--Estás viendo: <strong>Todas las bodegas</strong>-->
             <!--</h2>-->
@@ -67,7 +115,7 @@
                                   <span class="prod-var">{{bebida.descripcion}}</span>
                               </div>
                               <span class="prod-price ">${{bebida.precio_unidad}}</span>
-                              <button routerLink="/cart">Agregar</button>
+                              <button (click)="addcart(bebida)">Agregar</button>
                           </div>
                       </div>
                   </li>

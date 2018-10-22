@@ -54,7 +54,7 @@ export class UserService {
       );
   }
   getOdenList() {
-    return this._http.get(this.baseUrl + '/orden_de_compra/', this.jwt())
+    return this._http.get(this.baseUrl + '/ordenes_de_compra/', this.jwt())
       .pipe(
         map((response: Response) => response)
       );

@@ -29,6 +29,7 @@ import { RegisterComponent } from './layout/register/register.component';
 import { ForgotPasswdComponent } from './layout/forgot-passwd/forgot-passwd.component';
 import { AccountComponent } from './layout/account/account.component';
 import { AccountOrderComponent } from './layout/account/account-order/account-order.component';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 @NgModule({
   declarations: [
@@ -58,8 +59,9 @@ import { AccountOrderComponent } from './layout/account/account-order/account-or
     NgxPaginationModule,
     NgxSpinnerModule,
     SidebarModule.forRoot(),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({ positionClass: 'toast-top-full-width' }),
     TreeviewModule.forRoot(),
+    NgxSmartModalModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
