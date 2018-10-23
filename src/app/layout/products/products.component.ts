@@ -72,16 +72,21 @@ export class ProductsComponent implements OnInit {
     if (this.checkcategory) {
       if (this.checkcategory === 'Vinos') {
         newgroup.push(shorgroup.find(t => t.key === 'VINO'));
-        newgroup.push(shorgroup.find(t => t.key === 'WHISKY'));
       } else if (this.checkcategory === 'Champagnes') {
         newgroup.push(shorgroup.find(t => t.key === 'CHAMPAGNE'));
-      } else if (this.checkcategory === 'Whiskies_Espirituosas') {
         newgroup.push(shorgroup.find(t => t.key === 'WHISKY'));
         newgroup.push(shorgroup.find(t => t.key === 'ESPIRITUOSA'));
-      } else if (this.checkcategory === 'Cervezas_alcohol') {
         newgroup.push(shorgroup.find(t => t.key === 'CERVEZA'));
+      } else if (this.checkcategory === 'Whiskies_Espirituosas') {
+        newgroup.push(shorgroup.find(t => t.key === 'FERNET_Y_APERITIVO'));
+        newgroup.push(shorgroup.find(t => t.key === 'RON'));
         newgroup.push(shorgroup.find(t => t.key === 'VODKA'));
         newgroup.push(shorgroup.find(t => t.key === 'GIN'));
+        newgroup.push(shorgroup.find(t => t.key === 'BOURBON'));
+      } else if (this.checkcategory === 'Cervezas_alcohol') {
+        newgroup.push(shorgroup.find(t => t.key === 'ENERGIZANTE'));
+        newgroup.push(shorgroup.find(t => t.key === 'AGUA_GASEOSA_GRANADINA'));
+        newgroup.push(shorgroup.find(t => t.key === 'COOLERS'));
       }
     } else {
       newgroup = shorgroup;

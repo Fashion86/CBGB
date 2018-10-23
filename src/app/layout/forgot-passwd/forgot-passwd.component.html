@@ -5,7 +5,7 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="flex-column col-12" style="display: inline-flex;">
         <label class="reactform">
-          <input placeholder="Email" type="text" [(ngModel)]="email" formControlName="email">
+          <input placeholder="Email" type="text" [(ngModel)]="email" pattern="[^@]+@[^@]+" formControlName="email">
           <mat-error *ngIf="isFieldValid('email')">
             Email is required!
           </mat-error>

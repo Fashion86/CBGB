@@ -8,6 +8,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-cart',
@@ -19,12 +20,13 @@ export class CartComponent implements OnInit {
   currentuser: any;
   cartproducts: any[] = [];
   totalprice: number;
-  orderdata: Ordencompra;
+  orderdata: any;
   items: Item[] = [];
   subscription: Subscription;
   constructor(private  conf: ConfigService,
               public modalService: NgxSmartModalService,
               private alerts: ToastrService,
+              private  userapi: UserService,
               private router: Router) { }
 
   ngOnInit() {
@@ -56,8 +58,24 @@ export class CartComponent implements OnInit {
     this.modalService.getModal('confirm').close();
     if (this.conf.getUser()) {
         this.items = [];
-      const result = _.countBy(this.cartproducts, 'descripcion');
-      console.log(result)
+      // const result = _.countBy(this.cartproducts, 'codigo');
+      const newgroup = _(this.cartproducts)
+        .groupBy(x => x.codigo)
+        .map((value, key) => ({cantidad: value.length, bebida: value[0].codigo}))
+        .value();
+      this.orderdata = {
+        usuario: this.conf.getUser().username,
+        total: this.totalprice,
+        items: newgroup,
+        status: 'ENVIADA'
+      };
+      this.userapi.addOden(this.orderdata).subscribe(data => {
+        this.alerts.success('Success Order!');
+        localStorage.removeItem('cart');
+        this.router.navigate(['/products']);
+      }, err => {
+        this.alerts.error('Failed Order!');
+      });
     } else {
       this.router.navigate(['/login']);
     }

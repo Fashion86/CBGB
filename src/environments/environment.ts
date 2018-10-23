@@ -4,8 +4,15 @@
 
 export const environment = {
   production: false
+  // firebase: {
+  //   apiKey: "AIzaSyAES8UXXiwrA-PrUIWI9hNJ8s7TIYTXfsI",
+  //   authDomain: "cbgb-pwa.firebaseapp.com",
+  //   databaseURL: "https://cbgb-pwa.firebaseio.com",
+  //   projectId: "cbgb-pwa",
+  //   storageBucket: "cbgb-pwa.appspot.com",
+  //   messagingSenderId: "697564753721"
+  // }
 };
-
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

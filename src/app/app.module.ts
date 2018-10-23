@@ -17,6 +17,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TreeviewModule } from 'ngx-treeview';
 
+// firebase
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+
 import { AppRoutingModule } from './router/router.module';
 import { HeaderComponent } from './layout/header/header.component';
 import { HomeComponent } from './layout/home/home.component';
@@ -30,6 +36,7 @@ import { ForgotPasswdComponent } from './layout/forgot-passwd/forgot-passwd.comp
 import { AccountComponent } from './layout/account/account.component';
 import { AccountOrderComponent } from './layout/account/account-order/account-order.component';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { AsyncPipe } from '../../node_modules/@angular/common';
 
 @NgModule({
   declarations: [
@@ -62,9 +69,13 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
     ToastrModule.forRoot({ positionClass: 'toast-top-full-width' }),
     TreeviewModule.forRoot(),
     NgxSmartModalModule.forRoot(),
+    // AngularFireDatabaseModule,
+    // AngularFireAuthModule,
+    // AngularFireMessagingModule,
+    // AngularFireModule.initializeApp(environment.firebase),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [AsyncPipe],
   exports: [
   ],
   bootstrap: [AppComponent]

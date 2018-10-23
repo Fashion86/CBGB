@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfigService } from '../../services/config.service';
 import { Subscription } from 'rxjs';
+// import { MessagingService } from '../../services/messaging.service';
 
 @Component({
   selector: 'app-header',
@@ -15,10 +16,19 @@ export class HeaderComponent implements OnInit {
   token = null;
   usercart: any[] = [];
   subscription: Subscription;
+  message;
   constructor(private router: Router,
-              private  conf: ConfigService) { }
+              private  conf: ConfigService
+              // private messagingService: MessagingService
+  ) { }
 
   ngOnInit() {
+    // const userId = 'user001';
+    // this.messagingService.requestPermission(userId);
+    // this.messagingService.receiveMessage();
+    // this.message = this.messagingService.currentMessage;
+
+
     this.token = localStorage.getItem('token');
     this.usercart = this.conf.getCart();
     this.subscription = this.conf.getCartsync().subscribe(data => {

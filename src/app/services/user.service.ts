@@ -35,6 +35,12 @@ export class UserService {
         map((response: Response) => response)
       );
   }
+  forgotpass(email) {
+    return this._http.post(this.baseUrl + '/password_reset/', email, this.jwt())
+      .pipe(
+        map((response: Response) => response)
+      );
+  }
   getItem(id) {
     return this._http.get(this.baseUrl + '/item/' + id + '/', this.jwt())
       .pipe(

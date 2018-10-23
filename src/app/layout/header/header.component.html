@@ -4,6 +4,7 @@
       <a routerLink="/home"><img src="assets/img/logo.png" class="logo" alt="{{title}}"/></a>
       <a *ngIf="!_open" (click)="openSidebar()" class="headermenu"><i class="fa fa-bars fa-2x" style="color: #333; float: right"></i></a>
       <a *ngIf="_open" (click)="closeSidebar()" class="headermenu"><i class="fa fa-close fa-2x" style="color: #333; float: right"></i></a>
+      <!--<span>{{ message | async | json }}</span>-->
       <a *ngIf="!usercart || usercart.length < 1" routerLink="/cart"><img src="assets/img/cart1.png" class="cartpng" alt="cart"/></a>
       <a *ngIf="usercart && usercart.length > 0" routerLink="/cart" style="float: right"><img src="assets/img/cart2.png" class="cartpng" alt="cart"/><div class="cartcount"><span>{{usercart.length}}</span></div></a>
     </nav>

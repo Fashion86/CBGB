@@ -32,15 +32,13 @@ export class ForgotPasswdComponent implements OnInit {
 
   onSubmit() {
     this.formSubmitAttempt = true;
-    // if (this.form.valid) {
-    //   const userdata = {password: this.password};
-    //   this.userapi.login(userdata).subscribe(data => {
-    //     this.conf.setToken(data['token']);
-    //     this.setUser();
-    //   }, err => {
-    //     this.alerts.error('Unknown User!', 'Error!');
-    //   });
-    // }
+    if (this.form.valid) {
+      const email = {email: this.email};
+      this.userapi.forgotpass(email).subscribe(data => {
+      }, err => {
+        this.alerts.error('Failid request!');
+      });
+    }
 
   }
   isFieldValid(field: string) {
