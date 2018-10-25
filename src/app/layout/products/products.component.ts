@@ -74,19 +74,19 @@ export class ProductsComponent implements OnInit {
         newgroup.push(shorgroup.find(t => t.key === 'VINO'));
       } else if (this.checkcategory === 'Champagnes') {
         newgroup.push(shorgroup.find(t => t.key === 'CHAMPAGNE'));
-        newgroup.push(shorgroup.find(t => t.key === 'WHISKY'));
-        newgroup.push(shorgroup.find(t => t.key === 'ESPIRITUOSA'));
-        newgroup.push(shorgroup.find(t => t.key === 'CERVEZA'));
       } else if (this.checkcategory === 'Whiskies_Espirituosas') {
-        newgroup.push(shorgroup.find(t => t.key === 'FERNET_Y_APERITIVO'));
-        newgroup.push(shorgroup.find(t => t.key === 'RON'));
-        newgroup.push(shorgroup.find(t => t.key === 'VODKA'));
-        newgroup.push(shorgroup.find(t => t.key === 'GIN'));
+        newgroup.push(shorgroup.find(t => t.key === 'ESPIRITUOSA'));
+        newgroup.push(shorgroup.find(t => t.key === 'WHISKY'));
         newgroup.push(shorgroup.find(t => t.key === 'BOURBON'));
+        newgroup.push(shorgroup.find(t => t.key === 'GIN'));
+        newgroup.push(shorgroup.find(t => t.key === 'VODKA'));
+        newgroup.push(shorgroup.find(t => t.key === 'RON'));
+        newgroup.push(shorgroup.find(t => t.key === 'FERNET_Y_APERITIVO'));
       } else if (this.checkcategory === 'Cervezas_alcohol') {
+        newgroup.push(shorgroup.find(t => t.key === 'CERVEZA'));
+        newgroup.push(shorgroup.find(t => t.key === 'COOLERS'));
         newgroup.push(shorgroup.find(t => t.key === 'ENERGIZANTE'));
         newgroup.push(shorgroup.find(t => t.key === 'AGUA_GASEOSA_GRANADINA'));
-        newgroup.push(shorgroup.find(t => t.key === 'COOLERS'));
       }
     } else {
       newgroup = shorgroup;
@@ -96,6 +96,7 @@ export class ProductsComponent implements OnInit {
 
   }
   setmenu(alldata) {
+    const menubuffer: TreeviewItem[] = [];
     alldata.forEach(d => {
       const newgroup = _(d.value)
         .groupBy(x => x.marca)
@@ -106,11 +107,59 @@ export class ProductsComponent implements OnInit {
       newgroup.forEach(dd => {
         submenu.push({text: dd.marca, value: dd.marca});
       });
-      this.menuitems.push(new TreeviewItem({
-        text: d.key, value: d.key, children: submenu
-      }));
+      if (submenu.length > 1) {
+        menubuffer.push(new TreeviewItem({
+          text: d.key, value: d.key, children: submenu
+        }));
+      } else {
+        menubuffer.push(new TreeviewItem({
+          text: d.key, value: submenu[0].value
+        }));
+      }
+
     });
-    this.bebidagroup = this.origngroup;
+    const wiskysubmenu: any[] = [];
+    let agua_gaseosa_granadina: any = null;
+    const cervesar_cooler: any[] = [];
+    let champagn: any = null;
+    let vinos: any = null;
+    menubuffer.forEach( p => {
+      if (p.text === 'ESPIRITUOSA' || p.text === 'WHISKY' || p.text === 'BOURBON' || p.text === 'GIN' || p.text === 'VODKA'
+        || p.text === 'RON' || p.text === 'FERNET_Y_APERITIVO') {
+        wiskysubmenu.push(p);
+      } else if (p.text === 'AGUA_GASEOSA_GRANADINA') {
+        agua_gaseosa_granadina = new TreeviewItem({
+          text: 'AGUA GASEOSA Y GRANADINA', value: p.value
+        });
+      } else if (p.text === 'CERVEZA' || p.text === 'COOLERS' || p.text === 'ENERGIZANTE') {
+        cervesar_cooler.push(p);
+      } else if (p.text === 'CHAMPAGNE') {
+        champagn = p;
+      } else if (p.text === 'VINO') {
+        vinos = p;
+      }
+    });
+    if (wiskysubmenu.length > 0) {
+      this.menuitems.push(new TreeviewItem({
+        text: 'WHISKiES y ESPIRITUOSAS', value: 'WHISKiES y ESPIRITUOSAS', children: wiskysubmenu
+      }));
+    }
+    if (agua_gaseosa_granadina) {
+      this.menuitems.push(agua_gaseosa_granadina);
+    }
+    if (cervesar_cooler.length > 0) {
+      this.menuitems.push(new TreeviewItem({
+        text: 'CERVEZAS, COOLERS Y ENERGIZANTES', value: 'CERVEZAS, COOLERS Y ENERGIZANTES', children: cervesar_cooler
+      }));
+    }
+    if (champagn) {
+      this.menuitems.push(champagn);
+    }
+    if (vinos) {
+      this.menuitems.push(vinos);
+    }
+
+    this.bebidagroup = Object.assign([], this.origngroup);console.log(this.bebidagroup)
   }
   order(flag) {
     this.spinner.show();

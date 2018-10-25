@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.imageUrlArray.push('assets/img/slide.jpg');
-    this.imageUrlArray.push('assets/img/slide.jpg');
+    this.imageUrlArray.push('assets/img/slide-m.jpg');
   }
 
 }

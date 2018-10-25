@@ -31,7 +31,9 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.currentuser = this.conf.getUser();
-    this.cartproducts = this.conf.getCart();
+    if (this.conf.getCart()) {
+      this.cartproducts = this.conf.getCart();
+    }
     this.setTotal();
     this.orderdata = new Ordencompra();
   }
@@ -72,7 +74,7 @@ export class CartComponent implements OnInit {
       this.userapi.addOden(this.orderdata).subscribe(data => {
         this.alerts.success('Success Order!');
         localStorage.removeItem('cart');
-        this.router.navigate(['/products']);
+        this.router.navigate(['/account-order']);
       }, err => {
         this.alerts.error('Failed Order!');
       });

@@ -50,69 +50,19 @@
             </div>
           </div>
         </div>
-          <ngx-smart-modal #myModal identifier="myModal">
-              <div id="cart-detail">
-                  <table>
-                      <tr>
-                          <th data-breakpoints="xs"></th>
-                          <th>Producto</th>
-                          <th data-breakpoints="xs">Cantidad</th>
-                          <th >Precio</th>
-                      </tr>
-                      <tr>
-                          <td><img src="assets/img/prod-list-item.png" alt=""></td>
-                          <td>Esmeralda Malbec</td>
-                          <td>
-                              <input type="number" min="1" step="1" value="1">
-                          </td>
-                          <td>$102,96</td>
-                      </tr>
-                      <tr>
-                          <td><img src="assets/img/prod-list-item.png" alt=""></td>
-                          <td>Esmeralda Malbec</td>
-                          <td>
-                              <input type="number" min="1" step="1" value="1">
-                          </td>
-                          <td>$102,96</td>
-                      </tr>
-                      <tr>
-                          <td><img src="assets/img/prod-list-item.png" alt=""></td>
-                          <td>Esmeralda Malbec</td>
-                          <td>
-                              <input type="number" min="1" step="1" value="1">
-                          </td>
-                          <td>$102,96</td>
-                      </tr>
-                      <tr id="cart-total">
-                          <td></td>
-                          <td></td>
-                          <td>Total</td>
-                          <td>$102,96</td>
-                      </tr>
-                  </table>
-                  <div id="cart-options">
-                      <button routerLink="/products" class="float-left btn-cbgb white"><i class="fa fa-angle-left"></i> Volver a Tienda</button>
-                      <button type="button" [disabled]="false" class="btn-cbgb blue float-right" (click)="order()"><i class="fa fa-check"></i>Confirmar pedido</button>
-                      <div class="clearfix"></div>
-                  </div>
-              </div>
-          </ngx-smart-modal>
+
         <div class="col-lg-9 col-md-12 col-sm-12 col-12">
           <div id="products-list">
-              <!--<button (click)="modalService.getModal('myModal').open()">Open myModal</button>-->
-            <!--<h2>-->
-              <!--Estás viendo: <strong>Todas las bodegas</strong>-->
-            <!--</h2>-->
             <ul *ngFor="let group of bebidagroup">
               <h2>{{group.key}}</h2>
                   <li *ngFor="let bebidas of group.datas">
-                      <h3>{{group.key}}: {{bebidas.marca}}  ({{bebidas.datas.length}})</h3>
+                      <h3>{{bebidas.marca}}</h3>
                       <div *ngFor="let bebida of bebidas.datas">
                           <div [ngClass]="[bebida.nuevo ? 'new' : '',  bebida.promo ? 'promo' : '', (!bebida.nuevo && !bebida.promo) ? '' : '']">
                               <img src="assets/img/prod-list-item.png" alt="">
                               <div>
-                                  <h4>{{bebida.marca}}</h4>
-                                  <span class="prod-var">{{bebida.descripcion}}</span>
+                                  <h4>{{bebida.descripcion}}</h4>
+                                  <span *ngIf="group.key == 'VINO'" class="prod-var">{{bebida.variedad}}</span>
                               </div>
                               <span class="prod-price ">${{bebida.precio_unidad}}</span>
                               <button (click)="addcart(bebida)">Agregar</button>

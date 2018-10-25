@@ -1,3 +1,4 @@
+<ngx-spinner size="medium" type="ball-scale-multiple"></ngx-spinner>
 <app-header></app-header>
 <div id="account" class="content">
   <h1 class="title"><div class="inner-wrapper">Mi cuenta</div></h1>
@@ -11,75 +12,48 @@
           </ul>
         </div>
       </div>
+      <ngx-smart-modal #myModal identifier="myModal">
+        <div id="cart-detail">
+          <table>
+            <tr>
+              <th data-breakpoints="xs"></th>
+              <th>Producto</th>
+              <th data-breakpoints="xs">Cantidad</th>
+              <th >Precio</th>
+              <th ></th>
+            </tr>
+            <tr *ngFor="let product of editorder?.items">
+              <td><img src="assets/img/prod-list-item.png" alt=""></td>
+              <td>{{product.bebida}}</td>
+              <td>
+                <input type="number" min="1" step="1" value="1">
+              </td>
+              <!--<td>${{product.precio_unidad}}</td>-->
+              <td></td>
+              <td><a (click)="remove(product)"><i class="fa fa-close"></i></a></td>
+            </tr>
+            <tr id="cart-total">
+              <td></td>
+              <td></td>
+              <td>Total</td>
+              <td>${{totalprice}}</td>
+            </tr>
+          </table>
+          <div id="cart-options">
+            <!--<button routerLink="/products" class="float-left btn-cbgb white"><i class="fa fa-angle-left"></i> Volver a Tienda</button>-->
+            <button type="button" [disabled]="false" class="btn-cbgb blue float-right" (click)="updateorder()"><i class="fa fa-check"></i>Update Order</button>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </ngx-smart-modal>
       <div class="col-lg-8 col-md-8 col-sm-12 col-12">
         <div id="account-orders">
-          <ul>
+          <ul *ngFor="let order of userorders">
             <li>
-              <a data-fancybox data-src="#order-lightbox" href="javascript:;">234534</a>
+              <a data-fancybox data-src="#order-lightbox" (click)="openorderDialog(order)" href="javascript:;">{{order.id}}</a>
             </li>
-            <li>
-              <a data-fancybox data-src="#order-lightbox" href="javascript:;">54325</a>
-            </li>
-            <li>
-              <a data-fancybox data-src="#order-lightbox" href="javascript:;">675466</a>
-            </li>
-            <li>
-              <a data-fancybox data-src="#order-lightbox" href="javascript:;">52345</a>
-            </li>
-            <li>
-              <a data-fancybox data-src="#order-lightbox" href="javascript:;">234523</a>
-            </li>
-            <li>
-              <a data-fancybox data-src="#order-lightbox" href="javascript:;">234543</a>
-            </li>
-            <li>
-              <a data-fancybox data-src="#order-lightbox" href="javascript:;">235424</a>
-            </li>
-          </ul>
+           </ul>
         </div>
-      </div>
-    </div>
-    <div id="order-lightbox">
-      <div id="cart-detail">
-        <table>
-          <tr>
-            <th data-breakpoints="xs"></th>
-            <th>Producto</th>
-            <th data-breakpoints="xs">Cantidad</th>
-            <th>Precio</th>
-          </tr>
-          <tr>
-            <td><img src="assets/img/prod-list-item.png" alt=""></td>
-            <td>Esmeralda Malbec</td>
-            <td>
-              1
-            </td>
-            <td>$102,96</td>
-          </tr>
-          <tr>
-            <td><img src="assets/img/prod-list-item.png" alt=""></td>
-            <td>Esmeralda Malbec</td>
-            <td>
-              1
-            </td>
-            <td>$102,96</td>
-          </tr>
-          <tr>
-            <td><img src="assets/img/prod-list-item.png" alt=""></td>
-            <td>Esmeralda Malbec</td>
-            <td>
-              1
-            </td>
-            <td>$102,96</td>
-          </tr>
-          <tr id="cart-total">
-            <td></td>
-            <td></td>
-            <td>Total</td>
-            <td>$102,96</td>
-          </tr>
-        </table>
-
       </div>
     </div>
   </div>
