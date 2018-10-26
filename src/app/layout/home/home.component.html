@@ -1,158 +1,160 @@
 <app-header></app-header>
 <div class="content">
-  <div id="home-slider">
-      <slideshow [imageUrls]="imageUrlArray"
-                 [minHeight]="'600px'"
-                 [autoPlay]="true"
-                 [showArrows]="true"
-                 [lazyLoad]="imageUrlArray?.length > 1"
-                 [autoPlayWaitForLazyLoad]="true">
-      </slideshow>
-  </div>
-  <div id="home-about">
-    <div class="inner-wrapper">
-      <h2 class="title">La Distribuidora</h2>
-      <h3>CBGB, Sabemos de bebidas para tu Resto & Bar.</h3>
-      <p>CBGB es una empresa dedicada a la venta y distribución de bebidas para bares, restaurantes y particulares. Desde Villa Crespo realizamos entregas a todo CABA y GBA con personal propio, y llegamos a todo el país a través de acuerdos comerciales con diferentes empresas de transporte.</p>
-      <p>La calidad del servicio de entrega es nuestro principal signo de confianza. También podes pasar a retirar en nuestro punto de venta en Av.Dorrego 184. Tenemos en stock más de 500 productos nacionales e importados y realizamos ventas mayoristas y minoristas con el mejor asesoramiento sin costo.</p>
+  <div id="home">
+    <div id="home-slider">
+        <slideshow [imageUrls]="imageUrlArray"
+                   [minHeight]="'680px'"
+                   [autoPlay]="true"
+                   [showArrows]="true"
+                   [lazyLoad]="imageUrlArray?.length > 1"
+                   [autoPlayWaitForLazyLoad]="true">
+        </slideshow>
     </div>
-  </div>
-  <div id="home-cats">
-    <div class="inner-wrapper">
-      <h2 class="title">Nuestros productos</h2>
-      <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col">
-          <div>
-            <a [routerLink]="['/products', 'Vinos']"></a>
-            <img src="assets/img/cat-wine.png" alt="">
-            <h3>Vinos</h3>
+    <div id="home-about">
+      <div class="inner-wrapper">
+        <h2 class="title">LA DISTRIBUIDORA</h2>
+        <h3>CBGB, Sabemos de bebidas para tu Resto & Bar.</h3>
+        <p>CBGB es una empresa dedicada a la venta y distribución de bebidas para bares, restaurantes y particulares. Desde Villa Crespo realizamos entregas a todo CABA y GBA con personal propio, y llegamos a todo el país a través de acuerdos comerciales con diferentes empresas de transporte.</p>
+        <p>La calidad del servicio de entrega es nuestro principal signo de confianza. También podes pasar a retirar en nuestro punto de venta en Av.Dorrego 184. Tenemos en stock más de 500 productos nacionales e importados y realizamos ventas mayoristas y minoristas con el mejor asesoramiento sin costo.</p>
+      </div>
+    </div>
+    <div id="home-cats">
+      <div class="inner-wrapper">
+        <h2 class="title">Nuestros productos</h2>
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col">
+            <div>
+              <a [routerLink]="['/products', 'Vinos']"></a>
+              <img src="assets/img/cat-wine.png" alt="">
+              <h3>Vinos</h3>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col">
-          <div>
-            <a [routerLink]="['/products', 'Champagnes']"></a>
-            <img src="assets/img/cat-champagne.png" alt="">
-            <h3>Champagnes</h3>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col">
+            <div>
+              <a [routerLink]="['/products', 'Champagnes']"></a>
+              <img src="assets/img/cat-champagne.png" alt="">
+              <h3>Champagnes</h3>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col">
-          <div>
-            <a [routerLink]="['/products', 'Whiskies_Espirituosas']"></a>
-            <img src="assets/img/cat-whiskey.png" alt="">
-            <h3>Whiskies y Espirituosas</h3>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col">
+            <div>
+              <a [routerLink]="['/products', 'Whiskies_Espirituosas']"></a>
+              <img src="assets/img/cat-whiskey.png" alt="">
+              <h3>Whiskies y Espirituosas</h3>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col">
-          <div>
-            <a [routerLink]="['/products', 'Cervezas_alcohol']"></a>
-            <img src="assets/img/cat-beer.png" alt="">
-            <h3>Cervezas, coolers y sin alcohol</h3>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col">
+            <div>
+              <a [routerLink]="['/products', 'Cervezas_alcohol']"></a>
+              <img src="assets/img/cat-beer.png" alt="">
+              <h3>Cervezas, coolers y sin alcohol</h3>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="home-feat">
-    <h2 class="title">Destacados CBGB</h2>
-    <div class="inner-wrapper">
-      <div class="row" id="home-feat-slider">
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-          <div>
-            <a href="#"></a>
-            <img src="assets/img/home-feat-item.png" alt="">
-            <h4>Grolsch Weizen L.</h4><span>$130</span>
+    <div id="home-feat">
+      <h2 class="title">Destacados CBGB</h2>
+      <div class="inner-wrapper">
+        <div class="row" id="home-feat-slider">
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
+            <div>
+              <a href="#"></a>
+              <img src="assets/img/home-feat-item.png" alt="">
+              <h4>Grolsch Weizen L.</h4><span>$130</span>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-          <div>
-            <a href="#"></a>
-            <img src="assets/img/home-feat-item-3.png" alt="">
-            <h4>Famous Grouse</h4><span>$1700</span>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
+            <div>
+              <a href="#"></a>
+              <img src="assets/img/home-feat-item-3.png" alt="">
+              <h4>Famous Grouse</h4><span>$1700</span>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-          <div>
-            <a href="#"></a>
-            <img src="assets/img/home-feat-item-4.png" alt="">
-            <h4>Bavaria Lata Pack x 6</h4><span>$500</span>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
+            <div>
+              <a href="#"></a>
+              <img src="assets/img/home-feat-item-4.png" alt="">
+              <h4>Bavaria Lata Pack x 6</h4><span>$500</span>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-          <div>
-            <a href="#"></a>
-            <img src="assets/img/home-feat-item-2.png" alt="">
-            <h4>Alma Mora Malbec</h4><span>$100</span>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
+            <div>
+              <a href="#"></a>
+              <img src="assets/img/home-feat-item-2.png" alt="">
+              <h4>Alma Mora Malbec</h4><span>$100</span>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-          <div>
-            <a href="#"></a>
-            <img src="assets/img/home-feat-item.png" alt="">
-            <h4>Grolsch Weizen L.</h4><span>$130</span>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
+            <div>
+              <a href="#"></a>
+              <img src="assets/img/home-feat-item.png" alt="">
+              <h4>Grolsch Weizen L.</h4><span>$130</span>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-          <div>
-            <a href="#"></a>
-            <img src="assets/img/home-feat-item-3.png" alt="">
-            <h4>Famous Grouse</h4><span>$1700</span>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
+            <div>
+              <a href="#"></a>
+              <img src="assets/img/home-feat-item-3.png" alt="">
+              <h4>Famous Grouse</h4><span>$1700</span>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-          <div>
-            <a href="#"></a>
-            <img src="assets/img/home-feat-item-4.png" alt="">
-            <h4>Bavaria Lata Pack x 6</h4><span>$500</span>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
+            <div>
+              <a href="#"></a>
+              <img src="assets/img/home-feat-item-4.png" alt="">
+              <h4>Bavaria Lata Pack x 6</h4><span>$500</span>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-          <div>
-            <a href="#"></a>
-            <img src="assets/img/home-feat-item-2.png" alt="">
-            <h4>Alma Mora Malbec</h4><span>$100</span>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
+            <div>
+              <a href="#"></a>
+              <img src="assets/img/home-feat-item-2.png" alt="">
+              <h4>Alma Mora Malbec</h4><span>$100</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="home-contact">
-    <h2 class="title">Contactanos</h2>
-    <p>Para contactarse con nosotros, completa el siguiente formulario y responderemos a la brevedad!</p>
-    <div class="inner-wrapper">
-      <div id="home-contact-container">
-        <div id="home-contact-form">
-          <form action="">
-            <div class="contact-field">
-              <input name="contact-name" type="text" placeholder="Nombre y apellido" data-parsley-required data-parsley-error-message="Nombre Requerido">
-            </div>
-            <div class="contact-field">
-              <input name="contact-email" type="email" placeholder="Email" data-parsley-required data-parsley-error-message="E-mail válido Requerido">
-            </div>
-            <div class="contact-field">
-              <input name="contact-phone" type="text" placeholder="Teléfono" data-parsley-required data-parsley-error-message="Teléfono Requerido">
-            </div>
-            <div class="contact-field">
-              <textarea name="contact-msg" placeholder="Mensaje" data-parsley-required data-parsley-error-message="Mensaje Requerido"></textarea>
-            </div>
-            <div class="contact-field">
-              <input name="contact-" type="submit" value="Enviar">
-              <div class="clearfix"></div>
-            </div>
-          </form>
-        </div>
-        <div id="home-contact-info">
-          <span><strong>Dirección</strong>: Av. Dorrego 184 – CABA</span>
-          <span><strong>Teléfono</strong>: 011 4858-3809</span>
-          <span><strong>Whatsapp</strong>: +549 – 11 2425 6147</span>
-          <span><strong>E-mail</strong>: cbgbdistribucion@gmail.com</span>
-          <span><strong>Horarios</strong>: Lunes a Miércoles de 9:15 a 18:00 / Jueves a Viernes 9:15 a 19:00</span>
-          <span><strong>Colectivos</strong>: 19, 34, 42, 47, 65, 71, 76, 78, 87, 90, 93, 08, 111, 112, 127, 166 y 176</span>
-          <span><strong>Subte</strong>: Subte B, Estación Dorrego</span>
+    <div id="home-contact">
+      <h2 class="title">Contactanos</h2>
+      <p>Para contactarse con nosotros, completa el siguiente formulario y responderemos a la brevedad!</p>
+      <div class="inner-wrapper">
+        <div id="home-contact-container">
+          <div id="home-contact-form">
+            <form action="">
+              <div class="contact-field">
+                <input name="contact-name" type="text" placeholder="Nombre y apellido" data-parsley-required data-parsley-error-message="Nombre Requerido">
+              </div>
+              <div class="contact-field">
+                <input name="contact-email" type="email" placeholder="Email" data-parsley-required data-parsley-error-message="E-mail válido Requerido">
+              </div>
+              <div class="contact-field">
+                <input name="contact-phone" type="text" placeholder="Teléfono" data-parsley-required data-parsley-error-message="Teléfono Requerido">
+              </div>
+              <div class="contact-field">
+                <textarea name="contact-msg" placeholder="Mensaje" data-parsley-required data-parsley-error-message="Mensaje Requerido"></textarea>
+              </div>
+              <div class="contact-field">
+                <input name="contact-" type="submit" value="Enviar">
+                <div class="clearfix"></div>
+              </div>
+            </form>
+          </div>
+          <div id="home-contact-info">
+            <span><strong>Dirección</strong>: Av. Dorrego 184 – CABA</span>
+            <span><strong>Teléfono</strong>: 011 4858-3809</span>
+            <span><strong>Whatsapp</strong>: +549 – 11 2425 6147</span>
+            <span><strong>E-mail</strong>: cbgbdistribucion@gmail.com</span>
+            <span><strong>Horarios</strong>: Lunes a Miércoles de 9:15 a 18:00 / Jueves a Viernes 9:15 a 19:00</span>
+            <span><strong>Colectivos</strong>: 19, 34, 42, 47, 65, 71, 76, 78, 87, 90, 93, 08, 111, 112, 127, 166 y 176</span>
+            <span><strong>Subte</strong>: Subte B, Estación Dorrego</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div id="home-contact-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.2920780917802!2d-58.45640588514787!3d-34.59677508046132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5f85bf51fff%3A0xdd401e04dd67756e!2sCBGB+Distribucion!5e0!3m2!1ses!2sar!4v1537376559273" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+      <div id="home-contact-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.2920780917802!2d-58.45640588514787!3d-34.59677508046132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5f85bf51fff%3A0xdd401e04dd67756e!2sCBGB+Distribucion!5e0!3m2!1ses!2sar!4v1537376559273" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 </div>

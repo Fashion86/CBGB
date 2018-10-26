@@ -5,6 +5,8 @@ import { Ordencompra } from '../../../model/ordencompra';
 import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {NgxSmartModalService} from 'ngx-smart-modal';
+import * as _ from 'lodash';
+
 @Component({
   selector: 'app-account-order',
   templateUrl: './account-order.component.html',
@@ -39,9 +41,24 @@ export class AccountOrderComponent implements OnInit {
     this.modalService.getModal('myModal').open();
   }
   updateorder() {
-    this.modalService.getModal('myModal').close();
+    this.spinner.show();
+    this.api.updateOden(this.editorder, this.editorder.id).subscribe((res: any) => {
+      this.spinner.hide();
+      this.alerts.success('Success Update Order!');
+      this.modalService.getModal('myModal').close();
+    }, err => {
+      this.alerts.error('Update Order error!');
+      this.spinner.hide();
+    });
   }
-  remove(product) {
-
+  remove(item) {
+    this.spinner.show();
+    this.api.deleteItem(item.id).subscribe((res: any) => {
+      this.spinner.hide();
+      this.editorder.items = _.filter(this.editorder.items, p => p.bebida !== item.bebida);
+    }, err => {
+      this.alerts.error('Remove item error!');
+      this.spinner.hide();
+    });
   }
 }

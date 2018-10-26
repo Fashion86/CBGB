@@ -19,9 +19,10 @@
                 </tr>
                 <tr *ngFor="let product of cartproducts">
                     <td><img src="assets/img/prod-list-item.png" alt=""></td>
-                    <td>{{product.marca}}</td>
+                    <td>{{product.descripcion}}</td>
                     <td>
-                        <input type="number" min="1" step="1" value="1">
+                        <input type="number" min="1" step="1" (ngModelChange)="updateCount(product, $event)" [(ngModel)]="product.count">
+                        <!--<input type='number' ngSpinBox step='1' min='1'>-->
                     </td>
                     <td>${{product.precio_unidad}}</td>
                     <td><a routerLink="/cart" (click)="remove(product)"><i class="fa fa-close"></i></a></td>

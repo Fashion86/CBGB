@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TreeviewModule } from 'ngx-treeview';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 // firebase
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
@@ -69,6 +70,7 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
     ToastrModule.forRoot({ positionClass: 'toast-top-full-width' }),
     TreeviewModule.forRoot(),
     NgxSmartModalModule.forRoot(),
+    DeviceDetectorModule.forRoot(),
     // AngularFireDatabaseModule,
     // AngularFireAuthModule,
     // AngularFireMessagingModule,

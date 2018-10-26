@@ -3,6 +3,7 @@ import { User } from '../model/user';
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +24,20 @@ export class ConfigService {
     localStorage.setItem('currentuser', JSON.stringify(user));
   }
 
-  addCart(data: any) {
+  addCart(product: any) {
     if (localStorage.getItem('cart')) {
-      const old_item = JSON.parse(localStorage.getItem('cart'));
-      old_item.push(data);
-      localStorage.setItem('cart', JSON.stringify(old_item));
+      const products = JSON.parse(localStorage.getItem('cart'));
+      const same_product = _.find(products, p => p.codigo === product.codigo);
+      if (same_product) {
+        same_product.count += 1;
+      } else {
+        product['count'] = 1;
+        products.push(product);
+      }
+      localStorage.setItem('cart', JSON.stringify(products));
     } else {
-      localStorage.setItem('cart', JSON.stringify([data]));
+      product['count'] = 1;
+      localStorage.setItem('cart', JSON.stringify([product]));
     }
     this.subject.next(JSON.parse(localStorage.getItem('cart')));
   }

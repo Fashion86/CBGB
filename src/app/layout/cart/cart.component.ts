@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../../services/config.service';
 import { Ordencompra } from '../../model/ordencompra';
-import { Item } from '../../model/item';
 import * as _ from 'lodash';
 import {NgxSmartModalService} from 'ngx-smart-modal';
 import {ToastrService} from 'ngx-toastr';
@@ -21,7 +20,7 @@ export class CartComponent implements OnInit {
   cartproducts: any[] = [];
   totalprice: number;
   orderdata: any;
-  items: Item[] = [];
+  items: any[] = [];
   subscription: Subscription;
   constructor(private  conf: ConfigService,
               public modalService: NgxSmartModalService,
@@ -40,11 +39,11 @@ export class CartComponent implements OnInit {
   setTotal() {
     this.totalprice = 0.0;
     this.cartproducts.forEach( p => {
-      this.totalprice = this.totalprice + p.precio_unidad;
+      this.totalprice = this.totalprice + (p.precio_unidad * p.count);
     });
   }
   remove(product) {
-    this.cartproducts = _.filter(this.cartproducts, p => p !== product);
+    this.cartproducts = _.filter(this.cartproducts, p => p.codigo !== product.codigo);
     this.setTotal();
     this.conf.updateCart(this.cartproducts);
   }
@@ -56,19 +55,25 @@ export class CartComponent implements OnInit {
     }
 
   }
+  updateCount(product, count) {
+    product.count = count;
+    this.setTotal();
+    this.conf.updateCart(this.cartproducts);
+  }
   order() {
     this.modalService.getModal('confirm').close();
     if (this.conf.getUser()) {
         this.items = [];
-      // const result = _.countBy(this.cartproducts, 'codigo');
-      const newgroup = _(this.cartproducts)
-        .groupBy(x => x.codigo)
-        .map((value, key) => ({cantidad: value.length, bebida: value[0].codigo}))
-        .value();
+        this.cartproducts.forEach( p => {
+          this.items.push({
+              cantidad: p.count,
+              bebida: p.codigo
+          });
+        });
       this.orderdata = {
         usuario: this.conf.getUser().username,
         total: this.totalprice,
-        items: newgroup,
+        items: this.items,
         status: 'ENVIADA'
       };
       this.userapi.addOden(this.orderdata).subscribe(data => {

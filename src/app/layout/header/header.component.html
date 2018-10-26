@@ -1,28 +1,66 @@
-<!--<header id="header">-->
-  <div class="fixed-top">
+  <div id="header">
     <nav class="inner-wrapper" style="background-color: rgb(255,255,255)">
       <a routerLink="/home"><img src="assets/img/logo.png" class="logo" alt="{{title}}"/></a>
       <a *ngIf="!_open" (click)="openSidebar()" class="headermenu"><i class="fa fa-bars fa-2x" style="color: #333; float: right"></i></a>
       <a *ngIf="_open" (click)="closeSidebar()" class="headermenu"><i class="fa fa-close fa-2x" style="color: #333; float: right"></i></a>
       <!--<span>{{ message | async | json }}</span>-->
-      <a *ngIf="!usercart || usercart.length < 1" routerLink="/cart"><img src="assets/img/cart1.png" class="cartpng" alt="cart"/></a>
-      <a *ngIf="usercart && usercart.length > 0" routerLink="/cart" style="float: right"><img src="assets/img/cart2.png" class="cartpng" alt="cart"/><div class="cartcount"><span>{{usercart.length}}</span></div></a>
+      <a *ngIf="!products || products.length < 1" routerLink="/cart"><img src="assets/img/cart1.png" class="cartpng" alt="cart"/></a>
+      <a *ngIf="products && products.length > 0" routerLink="/cart" style="float: right"><img src="assets/img/cart2.png" class="cartpng" alt="cart"/><div class="cartcount"><span>{{totalCount}}</span></div></a>
+      <a *ngIf="currenturl === '/products' && !isDesktopDevice" (click)="filterDialog()" class="headermenu"><i class="fa fa-filter fa-2x" style="color: #333; float: right"></i></a>
+      <!--<a id="search-btn" class="headermenu"><i class="fa fa-search"></i></a>-->
+      <!--<div id="">-->
+      <!--<form action="">-->
+      <!--<div class="inner-wrapper">-->
+      <!--<input type="text" placeholder="Buscar">-->
+      <!--</div>-->
+      <!--</form>-->
+      <!--</div>-->
     </nav>
     <div id="mySidenav" class="sidenav" style="float: right">
       <!--<a href="javascript:void(0)" class="closebtn" (onclick)="closeSidebar()">&times;</a>-->
         <ul>
-          <li><a routerLink="/login"><i class="fa fa-user"></i> Iniciar sesión</a></li>
-          <li><a routerLink="/account"><i class="fa fa-user"></i> Mi cuenta</a></li>
-          <li><a routerLink="/cart"><i class="fa fa-shopping-cart"></i> Mi pedido</a></li>
+          <li><a routerLink="/login" (click)="closeSidebar()"><i class="fa fa-user"></i> Iniciar sesión</a></li>
+          <li><a routerLink="/account" (click)="closeSidebar()"><i class="fa fa-user"></i> Mi cuenta</a></li>
+          <li><a routerLink="/cart" (click)="closeSidebar()"><i class="fa fa-shopping-cart"></i> Mi pedido</a></li>
           <!--<li><a href="#">La Distribuidora</a></li>-->
-          <li><a routerLink="/products">Nuestros Productos</a></li>
+          <li><a routerLink="/products" (click)="closeSidebar()">Nuestros Productos</a></li>
           <!--<li><a href="#">Destacados</a></li>-->
           <!--<li><a href="#">Contacto</a></li>-->
           <li><a routerLink="/home" (click)="logout()">cerrar sesión</a></li>
         </ul>
     </div>
   </div>
-<!--</header>-->
+
+  <!--<header id="header">-->
+    <!--<div class="inner-wrapper">-->
+      <!--<a routerLink="/home" id="logo"><img src="assets/img/logo.png" alt=""></a>-->
+      <!--<button class="hamburger hamburger&#45;&#45;slider" type="button">-->
+                    <!--<span class="hamburger-box">-->
+                  <!--<span class="hamburger-inner"></span>-->
+                    <!--</span>-->
+      <!--</button>-->
+      <!--<button id="search-btn"><i class="fas fa-search"></i></button>-->
+      <!--<div id="search">-->
+        <!--<form action="">-->
+          <!--<div class="inner-wrapper">-->
+            <!--<input type="text" placeholder="Buscar">-->
+          <!--</div>-->
+        <!--</form>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</header>-->
+  <!--<div id="nav">-->
+    <!--<ul>-->
+      <!--<li><a routerLink="/login"><i class="fa fa-user"></i> Iniciar sesión</a></li>-->
+      <!--<li><a routerLink="/account"><i class="fa fa-user"></i> Mi cuenta</a></li>-->
+      <!--<li><a routerLink="/cart"><i class="fa fa-shopping-cart"></i> Mi pedido</a></li>-->
+      <!--&lt;!&ndash;<li><a href="#">La Distribuidora</a></li>&ndash;&gt;-->
+      <!--<li><a routerLink="/products">Nuestros Productos</a></li>-->
+      <!--&lt;!&ndash;<li><a href="#">Destacados</a></li>&ndash;&gt;-->
+      <!--&lt;!&ndash;<li><a href="#">Contacto</a></li>&ndash;&gt;-->
+      <!--<li><a routerLink="/home" (click)="logout()">cerrar sesión</a></li>-->
+    <!--</ul>-->
+  <!--</div>-->
 
 
 

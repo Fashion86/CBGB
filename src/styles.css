@@ -27,15 +27,15 @@
 }
 .cartcount {
     position: relative;
-    width: 20px;
-    right: -20px;
-    top: 3px;
-    height: 20px;
+    width: 23px;
+    right: -15px;
+    top: 0px;
+    height: 23px;
     background-color: #f7403d;
     border-radius: 50%;
 }
 .cartcount> span{
-    top: -2px;
+    top: -1px;
     position: absolute;
     right: 5px;
     font-weight: 600;
@@ -46,6 +46,7 @@
     height: 30px;
     float: right;
     margin-top: 10px;
+    margin-right: 10px;
 }
 .fixed-top {
     background-color: white !important;
@@ -90,6 +91,9 @@
     color: #fff;
     margin: 0 5px;
 }
+/*.confirmbtn:active {*/
+    /*background: #666666;*/
+/*}*/
 .cancelbtn {
     background: #fff;
     color: #2e2e2e;

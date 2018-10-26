@@ -28,7 +28,7 @@ export class ProductsComponent implements OnInit {
     hasFilter: false,
     hasCollapseExpand: true,
     decoupleChildFromParent: false,
-    maxHeight: 400
+    maxHeight: 500
   };
   menuitems: TreeviewItem[] = [];
   constructor(private  api: UserService,
@@ -62,7 +62,7 @@ export class ProductsComponent implements OnInit {
   sortbebida(data) {
     let shorgroup: any[] = [];
     const group = _.mapValues(_.groupBy(data, 'categoria'),
-      clist => clist.map(bebida => _.omit(bebida, 'categoria')));
+      clist => clist.map(bebida => _.omit(bebida)));
     shorgroup = Object.keys(group).map(key => ({ key, value: group[key] }));
     shorgroup.forEach(bgroup => {
       bgroup.value = _.orderBy(bgroup.value, ['precio_unidad'], ['asc']);
@@ -159,7 +159,7 @@ export class ProductsComponent implements OnInit {
       this.menuitems.push(vinos);
     }
 
-    this.bebidagroup = Object.assign([], this.origngroup);console.log(this.bebidagroup)
+    this.bebidagroup = Object.assign([], this.origngroup);
   }
   order(flag) {
     this.spinner.show();
@@ -197,7 +197,6 @@ export class ProductsComponent implements OnInit {
   }
   addcart(product) {
     this.conf.addCart(product);
-    // this.conf.sendServiceID(6);
     this.alerts.success('added product');
   }
   pageChanged(event) {
