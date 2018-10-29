@@ -4,9 +4,9 @@
   <div id="home">
     <div id="home-slider">
         <slideshow [imageUrls]="imageUrlArray"
-                   [minHeight]="'680px'"
+                   [minHeight]="slide_hight"
                    [autoPlay]="true"
-                   [showArrows]="true"
+                   [showArrows]="false"
                    [lazyLoad]="imageUrlArray?.length > 1"
                    [autoPlayWaitForLazyLoad]="true">
         </slideshow>

@@ -13,13 +13,20 @@ export class HomeComponent implements OnInit {
 
   imageUrlArray: any[] = [];
   msg: Message;
+  slide_hight = '600px';
   constructor(private alerts: ToastrService,
               private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.msg = new Message();
-    this.imageUrlArray.push('assets/img/slide.jpg');
-    this.imageUrlArray.push('assets/img/slide-m.jpg');
+    this.imageUrlArray = [];
+    if (window.screen.width > 767) {
+      this.imageUrlArray.push('assets/img/slide.jpg');
+      this.slide_hight = '680px';
+    } else {
+      this.imageUrlArray.push('assets/img/slide-m.jpg');
+      this.slide_hight = '200px';
+    }
   }
   onsendMail() {
     this.spinner.show();

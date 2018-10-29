@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   totalCount: number;
   subscription: Subscription;
   isDesktopDevice = true;
-  currenturl = ''
+  currenturl = '';
   message;
   constructor(private router: Router,
               private  conf: ConfigService,
