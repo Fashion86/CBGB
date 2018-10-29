@@ -1,3 +1,4 @@
+<ngx-spinner size="medium" type="ball-scale-multiple"></ngx-spinner>
 <app-header></app-header>
 <div class="content">
   <div id="home">
@@ -122,21 +123,22 @@
       <div class="inner-wrapper">
         <div id="home-contact-container">
           <div id="home-contact-form">
-            <form action="">
+            <form action="" id="myForm">
               <div class="contact-field">
-                <input name="contact-name" type="text" placeholder="Nombre y apellido" data-parsley-required data-parsley-error-message="Nombre Requerido">
+                <input name="contact-name" type="text" placeholder="Nombre y apellido" [(ngModel)]="msg.name" data-parsley-required data-parsley-error-message="Nombre Requerido">
               </div>
               <div class="contact-field">
-                <input name="contact-email" type="email" placeholder="Email" data-parsley-required data-parsley-error-message="E-mail válido Requerido">
+                <input name="contact-email" type="email" placeholder="Email" [(ngModel)]="msg.email" data-parsley-required data-parsley-error-message="E-mail válido Requerido">
               </div>
               <div class="contact-field">
-                <input name="contact-phone" type="text" placeholder="Teléfono" data-parsley-required data-parsley-error-message="Teléfono Requerido">
+                <input name="contact-phone" type="text" placeholder="Teléfono" [(ngModel)]="msg.phone" data-parsley-required data-parsley-error-message="Teléfono Requerido">
               </div>
               <div class="contact-field">
-                <textarea name="contact-msg" placeholder="Mensaje" data-parsley-required data-parsley-error-message="Mensaje Requerido"></textarea>
+                <textarea name="contact-msg" placeholder="Mensaje" [(ngModel)]="msg.message" data-parsley-required data-parsley-error-message="Mensaje Requerido"></textarea>
               </div>
               <div class="contact-field">
-                <input name="contact-" type="submit" value="Enviar">
+                <!--<input name="contact-" type="submit" value="Enviar">-->
+                <button type="button" (click)="onsendMail()" [disabled]="false" class="btn-cbgb blue float-right">Enviar</button>
                 <div class="clearfix"></div>
               </div>
             </form>
