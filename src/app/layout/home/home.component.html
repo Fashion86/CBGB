@@ -58,62 +58,75 @@
       <h2 class="title">Destacados CBGB</h2>
       <div class="inner-wrapper">
         <div class="row" id="home-feat-slider">
-          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-            <div>
-              <a href="#"></a>
-              <img src="assets/img/home-feat-item.png" alt="">
-              <h4>Grolsch Weizen L.</h4><span>$130</span>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-            <div>
-              <a href="#"></a>
-              <img src="assets/img/home-feat-item-3.png" alt="">
-              <h4>Famous Grouse</h4><span>$1700</span>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-            <div>
-              <a href="#"></a>
-              <img src="assets/img/home-feat-item-4.png" alt="">
-              <h4>Bavaria Lata Pack x 6</h4><span>$500</span>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-            <div>
-              <a href="#"></a>
-              <img src="assets/img/home-feat-item-2.png" alt="">
-              <h4>Alma Mora Malbec</h4><span>$100</span>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-            <div>
-              <a href="#"></a>
-              <img src="assets/img/home-feat-item.png" alt="">
-              <h4>Grolsch Weizen L.</h4><span>$130</span>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-            <div>
-              <a href="#"></a>
-              <img src="assets/img/home-feat-item-3.png" alt="">
-              <h4>Famous Grouse</h4><span>$1700</span>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-            <div>
-              <a href="#"></a>
-              <img src="assets/img/home-feat-item-4.png" alt="">
-              <h4>Bavaria Lata Pack x 6</h4><span>$500</span>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">
-            <div>
-              <a href="#"></a>
-              <img src="assets/img/home-feat-item-2.png" alt="">
-              <h4>Alma Mora Malbec</h4><span>$100</span>
-            </div>
-          </div>
+
+              <ngu-carousel #myCarousel [inputs]="carouselTile" [dataSource]="imgags" style="width: 100%">
+                <ngu-tile *nguCarouselDef="let item; let j = index" (click)="onproduct(item)">
+                    <div class="product-carousel" [style.background-image]="'url(' + item + ')'">
+                    </div>
+                  <br>
+                  <h4>Grolsch Weizen L.</h4>
+                  <span>$130</span>
+                </ngu-tile>
+                <button NguCarouselPrev class="leftRs">&lt;</button>
+                <button NguCarouselNext class="rightRs">&gt;</button>
+              </ngu-carousel>
+
+          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
+            <!--<div>-->
+              <!--<a href="#"></a>-->
+              <!--<img src="assets/img/home-feat-item.png" alt="">-->
+              <!--<h4>Grolsch Weizen L.</h4><span>$130</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
+            <!--<div>-->
+              <!--<a href="#"></a>-->
+              <!--<img src="assets/img/home-feat-item-3.png" alt="">-->
+              <!--<h4>Famous Grouse</h4><span>$1700</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
+            <!--<div>-->
+              <!--<a href="#"></a>-->
+              <!--<img src="assets/img/home-feat-item-4.png" alt="">-->
+              <!--<h4>Bavaria Lata Pack x 6</h4><span>$500</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
+            <!--<div>-->
+              <!--<a href="#"></a>-->
+              <!--<img src="assets/img/home-feat-item-2.png" alt="">-->
+              <!--<h4>Alma Mora Malbec</h4><span>$100</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
+            <!--<div>-->
+              <!--<a href="#"></a>-->
+              <!--<img src="assets/img/home-feat-item.png" alt="">-->
+              <!--<h4>Grolsch Weizen L.</h4><span>$130</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
+            <!--<div>-->
+              <!--<a href="#"></a>-->
+              <!--<img src="assets/img/home-feat-item-3.png" alt="">-->
+              <!--<h4>Famous Grouse</h4><span>$1700</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
+            <!--<div>-->
+              <!--<a href="#"></a>-->
+              <!--<img src="assets/img/home-feat-item-4.png" alt="">-->
+              <!--<h4>Bavaria Lata Pack x 6</h4><span>$500</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
+            <!--<div>-->
+              <!--<a href="#"></a>-->
+              <!--<img src="assets/img/home-feat-item-2.png" alt="">-->
+              <!--<h4>Alma Mora Malbec</h4><span>$100</span>-->
+            <!--</div>-->
+          <!--</div>-->
         </div>
       </div>
     </div>

@@ -17,6 +17,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TreeviewModule } from 'ngx-treeview';
 import { DeviceDetectorModule } from 'ngx-device-detector';
+import { NguCarouselModule } from '@ngu/carousel';
 
 // firebase
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
@@ -71,6 +72,7 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
     TreeviewModule.forRoot(),
     NgxSmartModalModule.forRoot(),
     DeviceDetectorModule.forRoot(),
+    NguCarouselModule,
     // AngularFireDatabaseModule,
     // AngularFireAuthModule,
     // AngularFireMessagingModule,

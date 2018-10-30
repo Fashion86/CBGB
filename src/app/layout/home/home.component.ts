@@ -3,6 +3,7 @@ import * as emailjs from 'emailjs-com';
 import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
 import { Message } from '../../model/message';
+import { NguCarouselConfig } from '@ngu/carousel';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,28 @@ export class HomeComponent implements OnInit {
   imageUrlArray: any[] = [];
   msg: Message;
   slide_hight = '600px';
+  imgags = [
+    'assets/img/home-feat-item.png',
+    'assets/img/home-feat-item-3.png',
+    'assets/img/home-feat-item-4.png',
+    'assets/img/home-feat-item-2.png',
+    'assets/img/home-feat-item.png',
+    'assets/img/home-feat-item-3.png',
+    'assets/img/home-feat-item-4.png',
+    'assets/img/home-feat-item-2.png'
+  ];
+  public carouselTile: NguCarouselConfig = {
+    grid: { xs: 1, sm: 1, md: 4, lg: 4, all: 0 },
+    speed: 250,
+    point: {
+      visible: true
+    },
+    load: 2,
+    velocity: 0,
+    touch: true,
+    loop: true,
+    easing: 'cubic-bezier(0, 0, 0.2, 1)'
+  };
   constructor(private alerts: ToastrService,
               private spinner: NgxSpinnerService) { }
 
@@ -30,6 +53,7 @@ export class HomeComponent implements OnInit {
       this.slide_hight = '200px';
     }
   }
+
   onsendMail() {
     this.spinner.show();
     const messageBody  = {
@@ -48,4 +72,7 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  onproduct(item) {
+    console.log(item)
+  }
 }
