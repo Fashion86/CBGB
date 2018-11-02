@@ -19,8 +19,8 @@
     display: none;
 }
 .cartpng {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     float: right;
     margin-right: 10px;
     margin-top: 10px;
@@ -41,12 +41,26 @@
     font-weight: 600;
     color: white;
 }
+.msgalert{
+    position: relative;
+    width: 15px;
+    right: -22px;
+    top: -6px;
+    height: 15px;
+    background-color: #f7403d;
+    border-radius: 50%;
+}
 .headermenu {
     width: 30px;
     height: 30px;
     float: right;
     margin-top: 10px;
     margin-right: 10px;
+    margin-left: 10px;
+}
+.headermenu>i:hover {
+    cursor: pointer;
+    color: #0d95e8 !important;
 }
 .fixed-top {
     background-color: white !important;

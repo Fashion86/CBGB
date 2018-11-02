@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfigService } from '../../services/config.service';
 import { Subscription } from 'rxjs';
-// import { MessagingService } from '../../services/messaging.service';
+import { MessagingService } from '../../services/messaging.service';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
@@ -23,17 +23,20 @@ export class HeaderComponent implements OnInit {
   message;
   constructor(private router: Router,
               private  conf: ConfigService,
-              private deviceService: DeviceDetectorService
+              private deviceService: DeviceDetectorService,
+              private msgService: MessagingService
   ) { }
 
   ngOnInit() {
-    // const userId = 'user001';
-    // this.messagingService.requestPermission(userId);
-    // this.messagingService.receiveMessage();
-    // this.message = this.messagingService.currentMessage;
+    this.token = localStorage.getItem('token');
+    if (this.token) {
+      const userid = this.token.split('.')[0];
+      this.msgService.requestPermission(userid);
+      this.msgService.receiveMessage();
+      this.message = this.msgService.currentMessage;
+    }
     this.currenturl = this.router.url;
     this.isDesktopDevice = this.deviceService.isDesktop();
-    this.token = localStorage.getItem('token');
     this.products = this.conf.getCart();
     this.setTotal(this.products);
     this.subscription = this.conf.getCartsync().subscribe(data => {
@@ -67,6 +70,9 @@ export class HeaderComponent implements OnInit {
     document.getElementById('products-options').style.opacity = '1';
     document.body.classList.add('locked');
     document.getElementById('products-options').classList.remove('locked');
+  }
+  openmsg() {
+
   }
   logout() {
     this.token = null;

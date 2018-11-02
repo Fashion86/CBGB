@@ -39,6 +39,7 @@ import { AccountComponent } from './layout/account/account.component';
 import { AccountOrderComponent } from './layout/account/account-order/account-order.component';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { AsyncPipe } from '../../node_modules/@angular/common';
+import { MessagingService } from './services/messaging.service';
 
 @NgModule({
   declarations: [
@@ -73,13 +74,13 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
     NgxSmartModalModule.forRoot(),
     DeviceDetectorModule.forRoot(),
     NguCarouselModule,
-    // AngularFireDatabaseModule,
-    // AngularFireAuthModule,
-    // AngularFireMessagingModule,
-    // AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [AsyncPipe],
+  providers: [MessagingService, AsyncPipe],
   exports: [
   ],
   bootstrap: [AppComponent]

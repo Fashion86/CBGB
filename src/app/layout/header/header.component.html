@@ -3,10 +3,16 @@
       <a routerLink="/home"><img src="assets/img/logo.png" class="logo" alt="{{title}}"/></a>
       <a *ngIf="!_open" (click)="openSidebar()" class="headermenu"><i class="fa fa-bars fa-2x" style="color: #333; float: right"></i></a>
       <a *ngIf="_open" (click)="closeSidebar()" class="headermenu"><i class="fa fa-close fa-2x" style="color: #333; float: right"></i></a>
-      <!--<span>{{ message | async | json }}</span>-->
+      <a (click)="openmsg()" class="headermenu">
+        <i class="fa fa-bell-o fa-2x" style="color: #333; float: right"></i>
+        <div *ngIf="(message | async)?.notification" class="msgalert">
+        </div>
+      </a>
+      <!--<span class="headermenu">{{(message | async)?.notification.title}}</span>-->
       <a *ngIf="!products || products.length < 1" routerLink="/cart"><img src="assets/img/cart1.png" class="cartpng" alt="cart"/></a>
       <a *ngIf="products && products.length > 0" routerLink="/cart" style="float: right"><img src="assets/img/cart2.png" class="cartpng" alt="cart"/><div class="cartcount"><span>{{totalCount}}</span></div></a>
       <a *ngIf="currenturl === '/products' && !isDesktopDevice" (click)="filterDialog()" class="headermenu"><i class="fa fa-filter fa-2x" style="color: #333; float: right"></i></a>
+
       <!--<a id="search-btn" class="headermenu"><i class="fa fa-search"></i></a>-->
       <!--<div id="">-->
       <!--<form action="">-->
