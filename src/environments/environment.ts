@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyAES8UXXiwrA-PrUIWI9hNJ8s7TIYTXfsI",
-    authDomain: "cbgb-pwa.firebaseapp.com",
-    databaseURL: "https://cbgb-pwa.firebaseio.com",
-    projectId: "cbgb-pwa",
-    storageBucket: "cbgb-pwa.appspot.com",
-    messagingSenderId: "697564753721"
+    apiKey: "AIzaSyBDcCcOCRbxCncLWkv-ZU8V4B8a3zlqE-I",
+    authDomain: "cbgb-pwa-2018.firebaseapp.com",
+    databaseURL: "https://cbgb-pwa-2018.firebaseio.com",
+    projectId: "cbgb-pwa-2018",
+    storageBucket: "cbgb-pwa-2018.appspot.com",
+    messagingSenderId: "276232773286"
   }
 };
 /*

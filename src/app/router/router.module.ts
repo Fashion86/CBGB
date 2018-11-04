@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'products',  component: ProductsComponent},
   { path: 'products/:item',  component: ProductsComponent},
   { path: 'login',  component: LoginComponent},
+  { path: 'login/:item',  component: LoginComponent},
   { path: 'register',  component: RegisterComponent},
   { path: 'forgot-passwd',  component: ForgotPasswdComponent},
   { path: 'account',  component: AccountComponent, canActivate: [AuthGuardService]},

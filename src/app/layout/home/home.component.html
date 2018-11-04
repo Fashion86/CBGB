@@ -60,68 +60,23 @@
         <div class="row" id="home-feat-slider">
 
               <ngu-carousel #myCarousel [inputs]="carouselTile" [dataSource]="imgags" style="width: 100%">
-                <ngu-tile *nguCarouselDef="let item; let j = index" (click)="onproduct(item)">
-                    <div class="product-carousel" [style.background-image]="'url(' + item + ')'">
+                <ngu-tile *nguCarouselDef="let item; let j = index">
+                    <div class="product-carousel" [style.background-image]="'url(' + item.img + ')'">
                     </div>
                   <br>
-                  <h4>Grolsch Weizen L.</h4>
-                  <span>$130</span>
+                  <h4>{{imagedata[item.id]?.descripcion}}</h4>
+                  <div *ngIf="imagedata[item.id]?.precio_unidad > 0.0;then content else other_content"></div>
+                  <ng-template #content><span class="prod-price ">${{imagedata[item.id]?.precio_unidad}}</span></ng-template>
+                  <ng-template #other_content><span class="prod-price ">${{imagedata[item.id]?.precio_caja}}</span></ng-template>
+                  <!--<span>${{imagedata[item.id]?.descripcion}}</span>-->
                 </ngu-tile>
                 <button NguCarouselPrev class="leftRs">&lt;</button>
                 <button NguCarouselNext class="rightRs">&gt;</button>
               </ngu-carousel>
-
-
-          <!--</div>-->
-          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
-            <!--<div>-->
-              <!--<a href="#"></a>-->
-              <!--<img src="assets/img/home-feat-item-3.png" alt="">-->
-              <!--<h4>Famous Grouse</h4><span>$1700</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
-            <!--<div>-->
-              <!--<a href="#"></a>-->
-              <!--<img src="assets/img/home-feat-item-4.png" alt="">-->
-              <!--<h4>Bavaria Lata Pack x 6</h4><span>$500</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
-            <!--<div>-->
-              <!--<a href="#"></a>-->
-              <!--<img src="assets/img/home-feat-item-2.png" alt="">-->
-              <!--<h4>Alma Mora Malbec</h4><span>$100</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
-            <!--<div>-->
-              <!--<a href="#"></a>-->
-              <!--<img src="assets/img/home-feat-item.png" alt="">-->
-              <!--<h4>Grolsch Weizen L.</h4><span>$130</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
-            <!--<div>-->
-              <!--<a href="#"></a>-->
-              <!--<img src="assets/img/home-feat-item-3.png" alt="">-->
-              <!--<h4>Famous Grouse</h4><span>$1700</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
-            <!--<div>-->
-              <!--<a href="#"></a>-->
-              <!--<img src="assets/img/home-feat-item-4.png" alt="">-->
-              <!--<h4>Bavaria Lata Pack x 6</h4><span>$500</span>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="col-lg-3 col-md-3 col-sm-12 col-12 col slide">-->
-            <!--<div>-->
-              <!--<a href="#"></a>-->
-              <!--<img src="assets/img/home-feat-item-2.png" alt="">-->
-              <!--<h4>Alma Mora Malbec</h4><span>$100</span>-->
-            <!--</div>-->
-          <!--</div>-->
+              <div style="text-align: center; margin: 0 auto;">
+                <br>
+                <button type="button" [disabled]="false" class="btn-cbgb blue" routerLink="/products">View All Product</button>
+              </div>
         </div>
       </div>
     </div>

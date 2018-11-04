@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {UserService} from '../../services/user.service';
+import * as emailjs from 'emailjs-com';
 
 @Component({
   selector: 'app-cart',
@@ -77,14 +78,29 @@ export class CartComponent implements OnInit {
         status: 'ENVIADA'
       };
       this.userapi.addOden(this.orderdata).subscribe(data => {
-        this.alerts.success('Success Order!');
+        const emailbody = document.getElementById('order-data');
+        const messageBody  = {
+          'reply_to': this.currentuser.email,
+          'from_name': this.currentuser.username,
+          'to_name': 'CBGB',
+          'subject': 'Product Order from ' + this.currentuser.username,
+          'attach': {
+            data: emailbody, alternative: true
+          }
+        };
+        emailjs.send('gmail', 'template_hc86m4E3', messageBody,  'user_L4WqeuVWonx60Ytaxv6jS')
+          .then((response) => {
+            this.alerts.success('Success Order!');
+          }, (err) => {
+            this.alerts.error('Failed send message!');
+          });
         localStorage.removeItem('cart');
         this.router.navigate(['/account-order']);
       }, err => {
         this.alerts.error('Failed Order!');
       });
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login', 'fromcart']);
     }
   }
 }

@@ -58,13 +58,15 @@
                   <li *ngFor="let bebidas of group.datas">
                       <h3>{{bebidas.marca}}</h3>
                       <div *ngFor="let bebida of bebidas.datas">
-                          <div [ngClass]="[bebida.nuevo ? 'new' : '',  bebida.promo ? 'promo' : '', (!bebida.nuevo && !bebida.promo) ? '' : '']">
+                          <div *ngIf="bebida.precio_unidad > 0.0 || bebida.precio_caja > 0.0" [ngClass]="[bebida.nuevo ? 'new' : '',  bebida.promo ? 'promo' : '', (!bebida.nuevo && !bebida.promo) ? '' : '']">
                               <img src="assets/img/prod-list-item.png" alt="">
                               <div>
                                   <h4>{{bebida.descripcion}}</h4>
                                   <span *ngIf="group.key == 'VINO'" class="prod-var">{{bebida.variedad}}</span>
                               </div>
-                              <span class="prod-price ">${{bebida.precio_unidad}}</span>
+                              <div *ngIf="bebida.precio_unidad > 0.0;then content else other_content"></div>
+                              <ng-template #content><span class="prod-price ">${{bebida.precio_unidad}}</span></ng-template>
+                              <ng-template #other_content><span class="prod-price ">${{bebida.precio_caja}}</span></ng-template>
                               <button (click)="addcart(bebida)">Agregar</button>
                           </div>
                       </div>
